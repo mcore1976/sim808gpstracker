@@ -5,9 +5,9 @@ The device when called by mobile phone polls info from GPS module ( if can fix t
 
 The part list is (with the cost as in 2018):
 
-    SIM808 (12 USD on Aliexpress search for "www.amd-global.com" boards BK-SIM808 https://cdn.instructables.com/ORIG/FAO/80RU/IXLALERK/FAO80RUIXLALERK.pdf)
-    GPS antenna with UMC connector matching SIM808 board - 2 USD
-    GSM antenna with UMC connector matching SIM808 board - 1 USD
+    SIM808 (12 USD on Aliexpress search for "www.amd-global.com" boards BK-808 https://cdn.instructables.com/ORIG/FAO/80RU/IXLALERK/FAO80RUIXLALERK.pdf)
+    GPS antenna with UMC connector matching BK-808 board - 2 USD
+    GSM antenna with UMC connector matching BK-808 board - 1 USD
     ATMEGA 328P (arduino uno) - 2 USD
     3x 1N4007 (1 USD) - to convert 5V from powerbank to 3.3V for ATMEGA328P VCC
     1x 1000uF / 16V capacitor ( 0.5 USD) - connect to VCC & GND of SIM808 board
