@@ -38,8 +38,10 @@ The script attached in repository ( "compileatmega" ) can be used to upload data
 For example in Ubuntu download these packages using command : "sudo apt-get install avr-gcc" and "sudo apt-get install avrdude" and you are ready to go.
 
 The solution has low power consumption because it is utilizing SLEEP MODE on SIM808 module and switches on GPS only when needed.
+I have found that on the board BK-SIM808 it is beter to get rid of (cut off, or solder out) PWR LED because it is taking few mA of current thus unnecessary increasing power consumption - keep that in mind.
+
 The ATMEGA328P must be active all the time because my BK-SIM808 breadboard does not have SIM808 RING/RI pin exposed (which can be used to wake up ATMEGA via hardware interrupt). In this design DTR pin of SIM808 module is used to sleepmode manipulation. 
-Measured power consumption for whole gps tracker is 14mA when SIM808 is in sleepmode.
+Measured power consumption for whole gps tracker is 14mA when SIM808 is in sleepmode with PWR LED on, but by getting PWR LED out the current lowers to 8mA.
 
 When SIM808 module sends SMS/GPRS data it it may draw a lot of current ( up to 2A ) in short peaks so it is crucial to use good cables and thick copper lines for GND and VCC on PCB. This is the main issue people face when dealing with SIMCOM modules. The voltage may additionaly drop during this situation so that is why such big capacitor is in use. 
 
