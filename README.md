@@ -37,8 +37,7 @@ CONNECTIONS TO BE MADE :
 To upload program code to the chip using cheapest USBASP programmer (less than 2 USD on eBay/Aliexpress) 
 look at this page : http://www.learningaboutelectronics.com/Articles/Program-AVR-chip-using-a-USBASP-with-10-pin-cable.php
 
-The script attached in repository ( "compileatmega" ) can be used to upload data to the chip if you have Linux machine with following packages : "avr-gcc" and "avrdude". 
-For example in Ubuntu download these packages using command : "sudo apt-get install avr-gcc" and "sudo apt-get install avrdude" and you are ready to go. Then you can run the script "compileatmega" to upload via AVRDUDE & USBASP to ATMEGA328P
+The script attached in repository ( "compileatmega" ) can be used to upload data to the chip if you have Linux machine with following packages : "avr-gcc", "avr-libc" and "avrdude". For example in Ubuntu download these packages using command : "sudo apt-get install avr-gcc" , "sudo apt-get install avr-libc",  "sudo apt-get install avrdude"  and you are ready to go. Then you can run the script "compileatmega" to upload via AVRDUDE & USBASP to ATMEGA328P
 
 The solution has low power consumption because it is utilizing SLEEP MODE on SIM808 module and switches on GPS only when needed.
 I have found that on the board BK-SIM808 it is better to get rid of PWR LED (cut off, or solder out)  because it is taking few mA of current thus unnecessary increasing power consumption - keep that in mind. Generally speaking SIM808 board is not so efficient as SIM800L because contains GPS/GNSS block.
