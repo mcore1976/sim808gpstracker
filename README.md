@@ -26,6 +26,8 @@ CONNECTIONS TO BE MADE :
 5) SIM808 VCC (BK-SIM808 pin V)  : to powerbank +5V VCC
 6) SIM808 PWRKEY (BK-SIM808 pin K - left unused - it is internally bound to GND)
 
+OPTIONAL) if SIM808 RI/RING available - connect to ATMEGA328P INT0 pin #4 
+
 7) Capacitor 1000uF between +5V and GND of powerbank 
 
 8) put 3x 1N40007 diodes IN SERIAL between 5V VCC and ATMEGA328P VCC PIN #7 - ATMEGA must be powered from ~3.3V to adopt TTL logic of outputs TXD/RXD of SIM808 (BK-SIM808) board
