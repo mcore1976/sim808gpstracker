@@ -1,21 +1,22 @@
 # sim808gpstracker
-DIY ultra cheap GPS bike/car tracker based on  ATMEGA 328P (arduino uno chip) and SIM808 module from China (includes GPS and GNSS function). The total cost is below 20USD ( as in 2019 )
+DIY cheap GPS motorbike/car tracker based on  ATMEGA 328P (arduino uno chip) and SIM808 module from China (includes GPS and GNSS function). The total cost is below 20USD ( as in 2019 )
 
 The device when called by mobile phone polls info from GPS module ( if can fix to sattelites - tries several minutes to fix) or when not available polls cell-id info from nearest 2G cell and  using GPRS  query Google servers for GPS location of that 2G cell. Collected location information is send back as text message to your phone as Google Map link. I have tried to keep the code as simple as possible and conserve battery power so functionality is rather limited... However...
 The software can be customized to provide location in realtime to some HTTP POST /FTP server (there is short tutorial here https://www.raviyp.com/embedded/194-sim900-gprs-http-at-commands?start=1 ) - it is up to you to expand the code. 
 
 The part list is (with the cost as in 2019):
 
-    SIM808 based board BK-SIM808 (10-12 USD on Aliexpress )
-         - search for "www.amd-global.com" boards BK-SIM808 or equivalent...
-             https://cdn.instructables.com/ORIG/FAO/80RU/IXLALERK/FAO80RUIXLALERK.pdf)
-    GPS (passive) antenna with IPEX connector matching BK-SIM808 board - 2 USD
-    GSM antenna with IPEX connector matching BK-SIM808 board - 1 USD
-    ATMEGA 328P (arduino uno) - 2 USD
-    3x 1N4007 (1 USD) - to convert 5V from powerbank to 3.3V for ATMEGA328P VCC
-    2x 1000uF / 16V capacitor ( 0.5 USD) - connect to VCC & GND of SIM808 board AND to existing 100uF (parallel) on the SIM808 board
-    100nF capacitor (0.2 USD) - connect to VCC & GND of SIM808 board
-    universal PCB, pins & connector (2 USD)
+SIM808 based board BK-SIM808 (10-12 USD on Aliexpress )
+ - search for "www.amd-global.com" boards BK-SIM808 or equivalent...
+   https://cdn.instructables.com/ORIG/FAO/80RU/IXLALERK/FAO80RUIXLALERK.pdf)
+GPS (passive) antenna with IPEX connector matching BK-SIM808 board - 2 USD
+GSM antenna with IPEX connector matching BK-SIM808 board - 1 USD
+ATMEGA 328P (arduino uno) - 2 USD
+3x 1N4007 (1 USD) - to convert 5V from powerbank to 3.3V for ATMEGA328P VCC
+2x 1000uF / 16V capacitor ( 0.5 USD) - connect to VCC & GND of SIM808 board 
+   AND to existing 100uF (parallel) on the SIM808 board
+100nF capacitor (0.2 USD) - connect to VCC & GND of SIM808 board
+universal PCB, pins & connector (2 USD)
 
 CONNECTIONS TO BE MADE :
 
