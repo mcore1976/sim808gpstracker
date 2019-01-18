@@ -46,7 +46,7 @@ OPTIONAL) if SIM808 RI/RING available - connect to ATMEGA328P INT0 pin #4
 
 10) connect GPS passive antenna and GSM antenna to BK-SIM808 board. Probably it can work with active GPS antenna (bit would need another resistor for pullup to VCC - decribed here https://www.raviyp.com/embedded/205-sim808-gps-active-antenna-unable-to-acquire-fix-solution )
 
-11) The BK-SIM808 board has TO SMALL electrolytic capacitor (only 100uF). You have to solder/add another big capacitor (I have used 1000uF ) in parallel to make this board work correctly. Otherwise it will continously restart itself while trying to register to the 2G network.
+11) The AND-GLOBAL BK-SIM808 board has TO SMALL electrolytic capacitor (only 100uF). You have to solder/add another big capacitor (I have used 1000uF ) in parallel to make this board work correctly. Otherwise it will continously restart itself while trying to register to the 2G network.
 
 To upload program code to the chip using cheapest USBASP programmer (less than 2 USD on eBay/Aliexpress) 
 look at this page : http://www.learningaboutelectronics.com/Articles/Program-AVR-chip-using-a-USBASP-with-10-pin-cable.php
