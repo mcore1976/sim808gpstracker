@@ -9,13 +9,20 @@ The part list is (with the cost as in 2019):
 SIM808 based board BK-SIM808 (10-12 USD on Aliexpress )
  - search for "www.amd-global.com" boards BK-SIM808 or equivalent...
    https://cdn.instructables.com/ORIG/FAO/80RU/IXLALERK/FAO80RUIXLALERK.pdf)
+   
 GPS (passive) antenna with IPEX connector matching BK-SIM808 board - 2 USD
+
 GSM antenna with IPEX connector matching BK-SIM808 board - 1 USD
+
 ATMEGA 328P (arduino uno) - 2 USD
+
 3x 1N4007 (1 USD) - to convert 5V from powerbank to 3.3V for ATMEGA328P VCC
+
 2x 1000uF / 16V capacitor ( 0.5 USD) - connect to VCC & GND of SIM808 board 
    AND to existing 100uF (parallel) on the SIM808 board
+
 100nF capacitor (0.2 USD) - connect to VCC & GND of SIM808 board
+
 universal PCB, pins & connector (2 USD)
 
 CONNECTIONS TO BE MADE :
