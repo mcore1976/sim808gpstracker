@@ -13,7 +13,7 @@ The part list is (with the cost as in 2019):
     GSM antenna with IPEX connector matching BK-SIM808 board - 1 USD
     ATMEGA 328P (arduino uno) - 2 USD
     3x 1N4007 (1 USD) - to convert 5V from powerbank to 3.3V for ATMEGA328P VCC
-    1x 1000uF / 16V capacitor ( 0.5 USD) - connect to VCC & GND of SIM808 board
+    2x 1000uF / 16V capacitor ( 0.5 USD) - connect to VCC & GND of SIM808 board AND to existing 100uF (parallel) on the SIM808 board
     100nF capacitor (0.2 USD) - connect to VCC & GND of SIM808 board
     universal PCB, pins & connector (2 USD)
 
@@ -35,6 +35,8 @@ OPTIONAL) if SIM808 RI/RING available - connect to ATMEGA328P INT0 pin #4
 9) put 100nF capacitor between ATMEGA328P VCC pin #7 and ATMEGA328P GND pin #8 & PIN#22
 
 10) connect GPS passive antenna and GSM antenna to BK-SIM808 board
+
+11) The BK-SIM808 board has TO SMALL electrolytic capacitor (only 100uF). You have to solder/add another big capacitor (I have used 2200uF ) in parallel to make this board work correctly. Otherwise it will continously restart it self trying to register to the 2G network.
 
 To upload program code to the chip using cheapest USBASP programmer (less than 2 USD on eBay/Aliexpress) 
 look at this page : http://www.learningaboutelectronics.com/Articles/Program-AVR-chip-using-a-USBASP-with-10-pin-cable.php
