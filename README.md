@@ -65,5 +65,5 @@ The tracker as designed will  be powered  from USB 5V Powerbank - it is good to 
 By adding LM1804/LM317/LM7805 circuit you may adopt it to power from +12V car battery.
 
 Previous version based on SIM800L with similar functionality -
-You can see how it works : https://youtu.be/u50MTLbE9ok
+You can see how it works : https://youtu.be/8R99t0O52GI
 
