@@ -64,6 +64,5 @@ When SIM808 module sends SMS/GPRS data it it may draw a lot of current ( up to 2
 The tracker as designed will  be powered  from USB 5V Powerbank - it is good to use the cheapest USB powerbanks that do not have current sensor. Remember that GPS tracker will draw LOW current ( lower than 14mA). Some advanced powerbanks tend to switch off USB 5V when they find out that there is very little current consumed. If you have Powerbank with signalling LED then I suggest to get rid of this LED to reduce power drain on Powerbank.
 By adding LM1804/LM317/LM7805 circuit you may adopt it to power from +12V car battery.
 
-Previous version based on SIM800L with similar functionality -
-You can see how it works : https://youtu.be/8R99t0O52GI
+You can see how it works here : https://www.youtube.com/watch?v=8R99t0O52GI
 
