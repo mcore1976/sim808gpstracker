@@ -1,5 +1,5 @@
 # sim808gpstracker
-DIY cheap GPS motorbike/car tracker based on  ATMEGA 328P (arduino uno chip) and SIM808 module from China (includes GPS and GNSS function). The total cost is below 20USD ( as in 2019 ) and positioning accuracy is ~10 meters ( tested in Europe location)
+DIY cheap GPS motorbike/car tracker based on  ATMEGA 328P (arduino uno chip) and SIM808 module from China (includes GPS and GNSS function). The total cost is below 20USD ( as in 2019 ) and positioning accuracy is ~1-5 meters ( tested in Europe location)
 
 The device when called by mobile phone polls info from GPS module ( if can fix to sattelites - tries several minutes to fix) or when not available polls cell-id info from nearest 2G cell and  using GPRS  query Google servers for GPS location of that 2G cell. Collected location information is send back as text message to your phone as Google Map link. I have tried to keep the code as simple as possible and conserve battery power so functionality is rather limited... However...
 The software can be customized to provide location in realtime to some HTTP POST /FTP server (there is short tutorial here https://www.raviyp.com/embedded/194-sim900-gprs-http-at-commands?start=1 ) - it is up to you to expand the code. 
@@ -54,9 +54,9 @@ look at this page : http://www.learningaboutelectronics.com/Articles/Program-AVR
 The script attached in repository ( "compileatmega" ) can be used to upload data to the chip if you have Linux machine with following packages : "avr-gcc", "avr-libc" and "avrdude". For example in Ubuntu download these packages using command : "sudo apt-get install avr-gcc" , "sudo apt-get install avr-libc",  "sudo apt-get install avrdude"  and you are ready to go. Then you can run the script "compileatmega" to upload via AVRDUDE & USBASP to ATMEGA328P
 
 The solution has low power consumption because it is utilizing SLEEP MODE on SIM808 module and switches on GPS only when needed.
-I have found that on the board BK-SIM808 it is better to get rid of PWR LED (cut off, or solder out)  because it is taking few mA of current thus unnecessary increasing power consumption - keep that in mind. Generally speaking SIM808 board is not so  power efficient as SIM800L because contains GPS/GNSS block.
+I have found that on the board BK-SIM808 it is better to get rid of PWR LED (cut off)  because it is taking few mA of current thus unnecessary increasing power consumption - keep that in mind. Generally speaking SIM808 board is not so  power efficient as SIM800L because contains GPS/GNSS block.
 
-The ATMEGA328P must be active all the time because my BK-SIM808 board does not have SIM808 RING/RI pin exposed (which can be used to wake up ATMEGA via hardware interrupt). In this design DTR pin of SIM808 module is used to sleepmode manipulation (when switch off sleepmode the DTR pin must be held LOW). 
+The ATMEGA328P must be active all the time because my BK-SIM808 board does not have SIM808 RING/RI pin exposed (which can be used to wake up ATMEGA via hardware interrupt). In this design DTR pin of SIM808 module is used to sleepmode manipulation (when  coming out of sleepmode the DTR pin must be held LOW for at least 50msec). 
 Measured power consumption for whole gps tracker is 14mA when SIM808 is in sleepmode with PWR LED on, but by getting PWR LED out the current lowers to 8mA.
 
 When SIM808 module sends SMS/GPRS data it it may draw a lot of current ( up to 2A ) in short peaks so it is crucial to use good cables and thick copper lines for GND and VCC on PCB. This is the main issue people face when dealing with SIMCOM modules. The voltage may additionaly drop during this situation so that is why such big capacitor is in use. 
