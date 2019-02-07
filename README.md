@@ -21,7 +21,7 @@ e) 3x 1N4007 (1 USD) - to convert 5V from powerbank to 3.3V for ATMEGA328P VCC
 f) 2x 1000uF / 16V capacitor ( 0.5 USD) - connect to VCC & GND of SIM808 board 
    AND to existing 100uF (parallel) on the SIM808 board
 
-g) 100nF capacitor (0.2 USD) - connect to VCC & GND of SIM808 board
+g) 100nF / 12V (or higher)  capacitor (0.2 USD) - connect to VCC & GND of SIM808 board
 
 h) universal PCB, pins & connector (2 USD)
 
