@@ -53,7 +53,7 @@ look at this page : http://www.learningaboutelectronics.com/Articles/Program-AVR
 
 The script attached in repository ( "compileatmega" ) can be used to upload data to the chip if you have Linux machine with following packages : "avr-gcc", "avr-libc" and "avrdude". For example in Ubuntu download these packages using command : "sudo apt-get install avr-gcc" , "sudo apt-get install avr-libc",  "sudo apt-get install avrdude"  and you are ready to go. Then you can run the script "compileatmega" to upload via AVRDUDE & USBASP to ATMEGA328P
 
-In the code you have to put  correct APN, USERNAME and PASSWORD your Mobile Network Operator before compiling  - replace word "internet" with correct words for your MNO :
+In the code you have to put correct APN, USERNAME and PASSWORD of GPRS access from your Mobile Network Operator before compiling - replace word "internet" with correct words for your MNO :
 
 constchar SAPBR2[] PROGMEM = {"AT+SAPBR=3,1,\"APN\",\"internet\"\r\n"}; // Put your mobile operator APN name here
 
