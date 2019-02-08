@@ -52,7 +52,7 @@ OPTIONAL) if SIM808 RI/RING available - connect to ATMEGA328P INT0 pin #4
 To upload program code to the chip using cheapest USBASP programmer (less than 2 USD on eBay/Aliexpress) 
 look at this page : http://www.learningaboutelectronics.com/Articles/Program-AVR-chip-using-a-USBASP-with-10-pin-cable.php
 
-The script attached in repository ( "compileatmega" ) can be used to upload data to the chip if you have Linux machine with following packages : "avr-gcc", "avr-libc" and "avrdude". For example in Ubuntu download these packages using command : "sudo apt-get install avr-gcc" , "sudo apt-get install avr-libc",  "sudo apt-get install avrdude"  and you are ready to go. Then you can run the script "compileatmega" to upload via AVRDUDE & USBASP to ATMEGA328P
+The script attached in repository ( "compileatmega" or "compileaatmega2") can be used to upload data to the chip if you have Linux machine with following packages : "avr-gcc", "avr-libc" and "avrdude". For example in Ubuntu download these packages using command : "sudo apt-get install avr-gcc" , "sudo apt-get install avr-libc",  "sudo apt-get install avrdude"  and you are ready to go. Then you can run the script "compileatmega" to upload via AVRDUDE & USBASP to ATMEGA328P
 
 In the code you have to put correct APN, USERNAME and PASSWORD of GPRS access from your Mobile Network Operator before compiling - replace word "internet" with correct words for your MNO :
 
@@ -69,11 +69,11 @@ SOURCE FILE OPTIONS :
 
 "main2.c"  (+ compilation script "compileatmega2")  
     - source file for SIM808 boards WIHOUT DTR/SLEEP PIN exposed. To use this file you DO NOT connect ATMEGA PC5 pin to DTR SIM808.  Example of such board is this module SKU405361-SIM808 http://files.banggood.com/2016/06/SKU405361-SIM808.rar . These boards are also sold here : https://www.electrodragon.com/product/sim808-dev-board-gsmgprsgps-replacing-sim908/
-Also pay attentiopn to type of TTL logic the board uses. 
-If you want to use this board and 5V TTL logic do not put 1N4007 Diodes to ATMEGA328P. If you want to use .3V TTL logic on it, you will probably need to connect 3.3V from ATMEGA VCC (after 3x !N4007 Diode drop it from 5V) to VMCU PIN of SIM808 board to switch it to 3.3V TTL mode. It is in the boards manual.
+Also pay attention to type of TTL logic the board uses. they have to match on both sides - ATMEGA328P and SIM808 board. 
+If you want to use board that has 5V TTL logic do not put 1N4007 Diodes to ATMEGA328P. If you want to use 3.3V TTL logic on SKU405361-SIM808, you will probably need to connect 3.3V from ATMEGA VCC (after 3x 1N4007 Diode drop it from 5V) to VMCU PIN of SIM808 board to switch it to 3.3V mode. It is described in details in SIM808 board manual.
 
 
-The solution has low power consumption because it is utilizing SLEEP MODE on SIM808 module and switches on GPS only when needed.
+The solution has low power consumption because it is utilizing SLEEP MODE on SIM808 module (only on BK-808 board) and switches on GPS only when needed.
 I have found that on the board BK-SIM808 it is better to get rid of PWR LED (cut off)  because it is taking few mA of current thus unnecessary increasing power consumption - keep that in mind. Generally speaking SIM808 board is not so  power efficient as SIM800L because contains GPS/GNSS block.
 
 The ATMEGA328P must be active all the time because my BK-SIM808 board does not have SIM808 RING/RI pin exposed (which can be used to wake up ATMEGA via hardware interrupt). In this design DTR pin of SIM808 module is used to sleepmode manipulation (when  coming out of sleepmode the DTR pin must be held LOW for at least 50msec). 
