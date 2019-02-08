@@ -9,6 +9,7 @@ The part list is (with the cost as in 2019):
 a) SIM808 based board BK-SIM808 (10-12 USD on Aliexpress )
  - search for "www.amd-global.com" boards BK-SIM808 or equivalent...
    https://cdn.instructables.com/ORIG/FAO/80RU/IXLALERK/FAO80RUIXLALERK.pdf)
+   it may also work with boards SKU405361-SIM808 (see description below for source code options)
    
 b) GPS (passive) antenna with IPEX connector matching BK-SIM808 board - 2 USD
 
