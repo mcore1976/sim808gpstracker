@@ -65,7 +65,8 @@ SOURCE FILE OPTIONS :
 
 main.c - source file for SIM808 boards WITH DTR/SLEEP PIN exposed as BK-808 board. To use this file you will have to attach ATMEGA PC5 PIN #28 to SIM808 board DTR/SLEEP pin. 
 
-main2.c - source file for SIM808 boards WIHOUT DTR/SLEEP PIN exposed. To use this file you DO NOT connect ATMEGA PC5 pin to DTR SIM808.  Example of such board is this module SKU405361-SIM808 http://files.banggood.com/2016/06/SKU405361-SIM808.rar . To use this board you will also have to connect 3.3V from ATMEGA VCC to VMCU PIN of SIM808 board. 
+main2.c - source file for SIM808 boards WIHOUT DTR/SLEEP PIN exposed. To use this file you DO NOT connect ATMEGA PC5 pin to DTR SIM808.  Example of such board is this module SKU405361-SIM808 http://files.banggood.com/2016/06/SKU405361-SIM808.rar . These boards are also sold here : https://www.electrodragon.com/product/sim808-dev-board-gsmgprsgps-replacing-sim908/
+To use this board simetimes you will need to enable 3.3V TTL logic on it, for example by connecting 3.3V from ATMEGA VCC to VMCU PIN of SIM808 board. It is in the boards manual.
 
 
 The solution has low power consumption because it is utilizing SLEEP MODE on SIM808 module and switches on GPS only when needed.
