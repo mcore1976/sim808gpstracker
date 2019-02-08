@@ -64,9 +64,9 @@ constchar SAPBR4[] PROGMEM = {"AT+SAPBR=3,1,\"PWD\",\"internet\"\r\n"}; // Put y
 
 SOURCE FILE OPTIONS :
 
-main.c - source file for SIM808 boards WITH DTR/SLEEP PIN exposed as BK-808 board. To use this file you will have to attach ATMEGA PC5 PIN #28 to SIM808 board DTR/SLEEP pin. 
+"main.c"  (+ compilation script "compileatmega") - source file for SIM808 boards WITH DTR/SLEEP PIN exposed as BK-808 board. To use this file you will have to attach ATMEGA PC5 PIN #28 to SIM808 board DTR/SLEEP pin. 
 
-main2.c - source file for SIM808 boards WIHOUT DTR/SLEEP PIN exposed. To use this file you DO NOT connect ATMEGA PC5 pin to DTR SIM808.  Example of such board is this module SKU405361-SIM808 http://files.banggood.com/2016/06/SKU405361-SIM808.rar . These boards are also sold here : https://www.electrodragon.com/product/sim808-dev-board-gsmgprsgps-replacing-sim908/
+"main2.c"  (+ compilation script "compileatmega2")  - source file for SIM808 boards WIHOUT DTR/SLEEP PIN exposed. To use this file you DO NOT connect ATMEGA PC5 pin to DTR SIM808.  Example of such board is this module SKU405361-SIM808 http://files.banggood.com/2016/06/SKU405361-SIM808.rar . These boards are also sold here : https://www.electrodragon.com/product/sim808-dev-board-gsmgprsgps-replacing-sim908/
 Also pay attentiopn to type of TTL logic the board uses. If you want to use this board and 5V TTL logic do not put 1N4007 Diodes to ATMEGA328P. If you want to use .3V TTL logic on it, you will probably need to connect 3.3V from ATMEGA VCC (after 3x !N4007 Diode drop it from 5V) to VMCU PIN of SIM808 board to switch it to 3.3V TTL mode. It is in the boards manual.
 
 
