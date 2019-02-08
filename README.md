@@ -17,7 +17,7 @@ c) GSM antenna with IPEX connector matching BK-SIM808 board - 1 USD
 
 d) ATMEGA 328P (arduino uno) - 2 USD
 
-e) 3x 1N4007 (1 USD) - to convert 5V from powerbank to 3.3V for ATMEGA328P VCC
+e) 3x 1N4007 (1 USD) - to convert 5V from powerbank to 3.3V for ATMEGA328P VCC ( only for BK-808 board and others that require TTL 3.3V logic)
 
 f) 2x 1000uF / 16V capacitor ( 0.5 USD) - connect to VCC & GND of SIM808 board 
    AND to existing 100uF (parallel) on the SIM808 board
