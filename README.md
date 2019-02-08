@@ -61,6 +61,13 @@ constchar SAPBR3[] PROGMEM = {"AT+SAPBR=3,1,\"USER\",\"internet\"\r\n"}; // Put 
 
 constchar SAPBR4[] PROGMEM = {"AT+SAPBR=3,1,\"PWD\",\"internet\"\r\n"}; // Put your mobile operator APN password here
 
+SOURCE FILE OPTIONS :
+
+main.c - source file for SIM808 boards WITH DTR/SLEEP PIN exposed. To use this file you will have to attach ATMEGA PC5 PIN #28 to SIM808 board DTR/SLEEP pin. 
+
+main2.c - source file for SIM808 boards WIHOUT DTR/SLEEP PIN exposed. To use this file you DO NOT connect ATMEGA PC5 pin to DTR SIM808.  Example of such board is this module SKU405361 http://files.banggood.com/2016/06/SKU405361-SIM808.rar  
+
+
 The solution has low power consumption because it is utilizing SLEEP MODE on SIM808 module and switches on GPS only when needed.
 I have found that on the board BK-SIM808 it is better to get rid of PWR LED (cut off)  because it is taking few mA of current thus unnecessary increasing power consumption - keep that in mind. Generally speaking SIM808 board is not so  power efficient as SIM800L because contains GPS/GNSS block.
 
