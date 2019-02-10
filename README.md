@@ -24,7 +24,7 @@ f) 2x 1000uF / 16V capacitor ( 0.5 USD) - connect to VCC & GND of SIM808 board
 
 g) 100nF / 12V (or higher)  capacitor (0.2 USD) - connect to VCC & GND of SIM808 board
 
-h) universal PCB, pins & connector (2 USD)
+h) universal PCB, pins & connector (2 USD) or some wires with pins if you going to use boards like "Arduino Pro Mini" instead 
 
 i) USB Powerbank 5V to make it work...
 
@@ -83,7 +83,8 @@ If you are having problems with compilation and USBASR programmer you may also l
 https://blog.podkalicki.com/how-to-compile-and-burn-the-code-to-avr-chip-on-linuxmacosxwindows/  
 
 Some people do not like to use universal PCB and are having problems with soldering. You may use "Arduino Pro Mini" instead.
-There are two options for this board - 5V voltage and 3.3V voltage. Pay attention to it ehrn selecting the board so it could match SIM808 board TTL logic (3.3V - BK-808 or 5V like on other boards). To use "Arduino Pro Mini" you will have to connect USBASP programmer to appropriate pins on this board using : SCK (pin 13), MISO (pin 12), MOSI (pin 11), RESET (pin RST), pin VCC, pin GND - look at the board details here : https://www.theengineeringprojects.com/2018/06/introduction-to-arduino-pro-mini.html 
+There are two options for this board - 5V voltage and 3.3V voltage. Pay attention to it ehrn selecting the board so it could match SIM808 board TTL logic (3.3V - BK-808 or 5V like on other boards). 
+To use "Arduino Pro Mini" you will have to connect USBASP programmer from KANDA socket (look here : https://www.atnel.pl/download/blog/ISP_KANDA.jpg )  to appropriate pins of this board using : SCK (pin 13), MISO (pin 12), MOSI (pin 11), RESET (pin RST), pin VCC, pin GND - look at the board details here : https://www.theengineeringprojects.com/2018/06/introduction-to-arduino-pro-mini.html 
 This GPS tracker solution is not based on ARDUINO FRAMEWORK (it does not use ARDUINO bootloader), it uses pure C code instead so USBASP programmer is still needed. 
 
 In the code you have to put correct APN, USERNAME and PASSWORD of GPRS access from your Mobile Network Operator before compiling - replace word "internet" with correct words for your MNO :
@@ -95,7 +96,7 @@ constchar SAPBR3[] PROGMEM = {"AT+SAPBR=3,1,\"USER\",\"internet\"\r\n"}; // Put 
 constchar SAPBR4[] PROGMEM = {"AT+SAPBR=3,1,\"PWD\",\"internet\"\r\n"}; // Put your mobile operator APN password here
 
 
-
+OTHER INFO : 
 
 The solution has low power consumption because it is utilizing SLEEP MODE on SIM808 module (only on BK-808 board) and switches on GPS only when needed.
 I have found that on the board BK-SIM808 it is better to get rid of PWR LED (cut off)  because it is taking few mA of current thus unnecessary increasing power consumption - keep that in mind. Generally speaking SIM808 board is not so  power efficient as SIM800L because contains GPS/GNSS block.
@@ -106,7 +107,7 @@ Measured power consumption for whole gps tracker is 14mA when SIM808 is in sleep
 When SIM808 module sends SMS/GPRS data it it may draw a lot of current ( up to 2A ) in short peaks so it is crucial to use good cables and thick copper lines for GND and VCC on PCB. This is the main issue people face when dealing with SIMCOM modules. The voltage may additionaly drop during this situation so that is why such big capacitor is in use. 
 
 The tracker as designed will  be powered  from USB 5V Powerbank - it is good to use the cheapest USB powerbanks that do not have current sensor. Remember that GPS tracker will draw LOW current ( lower than 14mA). Some advanced powerbanks tend to switch off USB 5V when they find out that there is very little current consumed. If you have Powerbank with signalling LED then I suggest to get rid of this LED to reduce power drain on Powerbank.
-By adding LM1804/LM317/LM7805 circuit you may adopt it to power from +12V car battery.
+By adding LM1804/LM317/LM7805 circuit you or DC-DC buck converter (LM2596) you may adopt design to power from +12V car battery.
 
-You can see how it works here : https://www.youtube.com/watch?v=8R99t0O52GI
+You can see how it works here : https://www.youtube.com/watch?v=8R99t0O52GI  ( it was the prototype , now the code works much better :-)  
 
