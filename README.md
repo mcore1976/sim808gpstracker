@@ -4,7 +4,7 @@ DIY cheap GPS motorbike/car tracker based on  ATMEGA 328P (arduino uno chip) and
 The device when called by mobile phone polls info from GPS module ( if can fix to sattelites - tries several minutes to fix) or when not available polls cell-id info from nearest 2G cell and  using GPRS  query Google servers for GPS location of that 2G cell. Collected location information is send back as text message to your phone as Google Map link. I have tried to keep the code as simple as possible and conserve battery power so functionality is rather limited... However...
 The software can be customized to provide location in realtime to some HTTP POST /FTP server (there is short tutorial here https://www.raviyp.com/embedded/194-sim900-gprs-http-at-commands?start=1 ) - it is up to you to expand the code. 
 
-The part list is (with the cost as in 2019):
+BILL OF MATERIAL LIST (as for year 2019):
 
 a) SIM808 based board BK-SIM808 (10-12 USD on Aliexpress )
  - search for "www.amd-global.com" boards BK-SIM808 or equivalent...
@@ -28,6 +28,9 @@ h) universal PCB, pins & connector (2 USD)
 
 i) USB Powerbank 5V to make it work...
 
+
+
+
 CONNECTIONS TO BE MADE :
 
 1) SIM808 RXD (BK-SIM808 pin R) to ATMEGA328 TXD PIN #3,
@@ -37,9 +40,9 @@ CONNECTIONS TO BE MADE :
 5) SIM808 VCC (BK-SIM808 pin V)  : to powerbank +5V VCC
 6) SIM808 PWRKEY (BK-SIM808 pin K - left unused - it is internally bound to GND, however when breaking this connection it can be used to switch on/off whole SIM808 board)
 
-OPTIONAL) if SIM808 RI/RING available - connect to ATMEGA328P INT0 pin #4 
+OPTIONAL) if SIM808 RI/RING available - connect to ATMEGA328P INT0 pin #4 and uncomment appropriate portion of the source code to enable POWERDOWN mode on ATMEGA
 
-7) Capacitor 1000uF between +5V and GND of powerbank 
+7) Capacitor 1000uF between +5V and GND of powerbank  (optional, most of them already has some huge capacitors)
 
 8) put 3x 1N40007 diodes IN SERIAL between 5V VCC and ATMEGA328P VCC PIN #7 - ATMEGA must be powered from ~3.3V to adopt TTL logic of outputs TXD/RXD of SIM808 (BK-SIM808) board
 
@@ -47,16 +50,41 @@ OPTIONAL) if SIM808 RI/RING available - connect to ATMEGA328P INT0 pin #4
 
 10) connect GPS passive antenna and GSM antenna to BK-SIM808 board. Probably it can work with active GPS antenna (but you would need to add another resistor for pullup antenna input to VCC - decribed here https://www.raviyp.com/embedded/205-sim808-gps-active-antenna-unable-to-acquire-fix-solution )
 
-11) The AND-GLOBAL BK-SIM808 board has TO SMALL electrolytic capacitor (only 100uF). You have to solder/add another big capacitor (I have used 2200uF, but it can be 1000uF ) in parallel to make this board work correctly. Otherwise it will continously restart itself while trying to register to the 2G network.
+11) The AND-GLOBAL BK-SIM808 board has TO SMALL electrolytic capacitor (mine had only 100uF). You have to solder/add another big capacitor (I have used 2200uF, but it can be 1000uF ) in parallel to make this board work correctly. Otherwise it will continously restart itself while trying to register to the 2G network.
+
+
+
+
+SOURCE FILE OPTIONS :
+
+There are two source files provided, first for BK-808 board (with PIN DTR/SLEEP and RXD/TXD) and second file for any SIM808 based board with only RXD,TXD pins.
+
+"main.c"  (+ compilation script "compileatmega") 
+    - source file for SIM808 boards WITH DTR/SLEEP PIN exposed as BK-808 board. To use this file you will have to attach ATMEGA PC5 PIN #28 to SIM808 board DTR/SLEEP pin. 
+
+"main2.c"  (+ compilation script "compileatmega2")  
+    - source file for SIM808 boards WIHOUT DTR/SLEEP PIN exposed. To use this file you DO NOT connect ATMEGA PC5 pin to DTR SIM808.  
+    Example of board wihout SLEEP/DTR is this module SKU405361-SIM808 http://files.banggood.com/2016/06/SKU405361-SIM808.rar . These boards are also sold here : https://www.electrodragon.com/product/sim808-dev-board-gsmgprsgps-replacing-sim908/
+
+Also pay attention to type of TTL logic the board uses. They have to match on both sides - ATMEGA328P and SIM808 board - otherwise you may kill the SIM808 board. 
+If you want to use board that has 5V TTL logic DO NOT put 1N4007 Diodes to ATMEGA328P. If you want to use 3.3V TTL logic on SKU405361-SIM808 (old type), you will probably need to connect 3.3V from ATMEGA VCC (after 3x 1N4007 Diode drop it from 5V) to VMCU PIN of SIM808 board to switch it to 3.3V mode. You need to check all the details in SIM808 board manual.
+
 
 To upload program code to the chip using cheapest USBASP programmer (less than 2 USD on eBay/Aliexpress) 
 look at this page : http://www.learningaboutelectronics.com/Articles/Program-AVR-chip-using-a-USBASP-with-10-pin-cable.php
 
-The script attached in repository ( "compileatmega" or "compileaatmega2") can be used to upload data to the chip if you have Linux machine with following packages : "gcc-avr", "binutils-avr", "avr-libc", "avrdude" and optionally "gdb-avr"(debugger only if you really need it) . For example in Ubuntu download these packages using command : "sudo apt-get install gcc-avr binutils-avr avr-libc gdb-avr avrdude". Then you will be able to run compilation the script by commands "sudo chmod +rx compiletmega*" and "sudo ./compileatmega"
-You can also read the tutorial here :  http://www.linuxandubuntu.com/home/setting-up-avr-gcc-toolchain-and-avrdude-to-program-an-avr-development-board-in-ubuntu   or here   https://blog.podkalicki.com/how-to-compile-and-burn-the-code-to-avr-chip-on-linuxmacosxwindows/  
+The script attached in repository ( "compileatmega" or "compileaatmega2") can be used to upload data to the chip if you have Linux machine with following packages : "gcc-avr", "binutils-avr", "avr-libc", "avrdude" and optionally "gdb-avr"(debugger only if you really need it) . 
+For example in Ubuntu download these packages using command : "sudo apt-get install gcc-avr binutils-avr avr-libc gdb-avr avrdude". 
+After doing it you will be able to run compilation the script from the directory you have downloaded github files by commands: 
+- "sudo chmod +rx compiletmega*" and "sudo ./compileatmega"  ( for BK-808 board)
+- "sudo chmod +rx compiletmega*" and "sudo ./compileatmega2" ( for other SIM808 boards )
 
-If you intend to use "Arduino Pro Mini" board you will have to connect USBASP programmer to appropriate pins on thisboard : SCK, MISO, MOSI, RESET, VCC, GND - look at the board details here : https://www.theengineeringprojects.com/2018/06/introduction-to-arduino-pro-mini.html
-This solution is not based on ARDUINO FRAMEWORK, it uses pure C code.
+If you are having problems with compilation and USBASR programmer you may also look at these tutorials  :  http://www.linuxandubuntu.com/home/setting-up-avr-gcc-toolchain-and-avrdude-to-program-an-avr-development-board-in-ubuntu 
+https://blog.podkalicki.com/how-to-compile-and-burn-the-code-to-avr-chip-on-linuxmacosxwindows/  
+
+Some people do not like to use universal PCB and are having problems with soldering. You may use "Arduino Pro Mini" instead.
+There are two options for this board - 5V voltage and 3.3V voltage. Pay attention to it ehrn selecting the board so it could match SIM808 board TTL logic (3.3V - BK-808 or 5V like on other boards). To use "Arduino Pro Mini" you will have to connect USBASP programmer to appropriate pins on this board using : SCK (pin 13), MISO (pin 12), MOSI (pin 11), RESET (pin RST), pin VCC, pin GND - look at the board details here : https://www.theengineeringprojects.com/2018/06/introduction-to-arduino-pro-mini.html 
+This GPS tracker solution is not based on ARDUINO FRAMEWORK (it does not use ARDUINO bootloader), it uses pure C code instead so USBASP programmer is still needed. 
 
 In the code you have to put correct APN, USERNAME and PASSWORD of GPRS access from your Mobile Network Operator before compiling - replace word "internet" with correct words for your MNO :
 
@@ -66,15 +94,7 @@ constchar SAPBR3[] PROGMEM = {"AT+SAPBR=3,1,\"USER\",\"internet\"\r\n"}; // Put 
 
 constchar SAPBR4[] PROGMEM = {"AT+SAPBR=3,1,\"PWD\",\"internet\"\r\n"}; // Put your mobile operator APN password here
 
-SOURCE FILE OPTIONS :
 
-"main.c"  (+ compilation script "compileatmega") 
-    - source file for SIM808 boards WITH DTR/SLEEP PIN exposed as BK-808 board. To use this file you will have to attach ATMEGA PC5 PIN #28 to SIM808 board DTR/SLEEP pin. 
-
-"main2.c"  (+ compilation script "compileatmega2")  
-    - source file for SIM808 boards WIHOUT DTR/SLEEP PIN exposed. To use this file you DO NOT connect ATMEGA PC5 pin to DTR SIM808.  Example of such board is this module SKU405361-SIM808 http://files.banggood.com/2016/06/SKU405361-SIM808.rar . These boards are also sold here : https://www.electrodragon.com/product/sim808-dev-board-gsmgprsgps-replacing-sim908/
-Also pay attention to type of TTL logic the board uses. they have to match on both sides - ATMEGA328P and SIM808 board. 
-If you want to use board that has 5V TTL logic do not put 1N4007 Diodes to ATMEGA328P. If you want to use 3.3V TTL logic on SKU405361-SIM808, you will probably need to connect 3.3V from ATMEGA VCC (after 3x 1N4007 Diode drop it from 5V) to VMCU PIN of SIM808 board to switch it to 3.3V mode. It is described in details in SIM808 board manual.
 
 
 The solution has low power consumption because it is utilizing SLEEP MODE on SIM808 module (only on BK-808 board) and switches on GPS only when needed.
