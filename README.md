@@ -89,11 +89,12 @@ constchar SAPBR3[] PROGMEM = {"AT+SAPBR=3,1,\"USER\",\"internet\"\r\n"}; // Put 
 constchar SAPBR4[] PROGMEM = {"AT+SAPBR=3,1,\"PWD\",\"internet\"\r\n"}; // Put your mobile operator APN password here
 
 If you are having problems with compilation and USBASR programmer you may also look at these tutorials  :  http://www.linuxandubuntu.com/home/setting-up-avr-gcc-toolchain-and-avrdude-to-program-an-avr-development-board-in-ubuntu 
+
 https://blog.podkalicki.com/how-to-compile-and-burn-the-code-to-avr-chip-on-linuxmacosxwindows/  
 
 
 Some people do not like to use universal PCB and are having problems with soldering. You may use "Arduino Pro Mini" instead.
-There are two options for this board - 5V voltage and 3.3V voltage. Pay attention to it ehrn selecting the board so it could match SIM808 board TTL logic (3.3V - BK-808 or 5V like on other boards). 
+There are two options for this board - 5V voltage and 3.3V voltage. Pay attention to it when selecting the board so it will  match SIM808 board TTL logic (3.3V - BK-808 or 5V like on other boards). 
 
 To use "Arduino Pro Mini" you will have to connect USBASP programmer from KANDA socket (look here : https://www.atnel.pl/download/blog/ISP_KANDA.jpg )  to appropriate pins of this board  : SCK (pin 13), MISO (pin 12), MOSI (pin 11), RESET (pin RST), pin VCC, pin GND - like here when changing/uploading bootloader https://www.arduino.cc/en/Hacking/MiniBootloader
 
