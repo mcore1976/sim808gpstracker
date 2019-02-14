@@ -115,7 +115,7 @@ Measured power consumption for whole gps tracker is 14mA when SIM808 is in sleep
 When SIM808 module sends SMS/GPRS data it it may draw a lot of current ( up to 2A ) in short peaks so it is crucial to use good cables and thick copper lines for GND and VCC on PCB. This is the main issue people face when dealing with SIMCOM modules. The voltage may additionaly drop during this situation so that is why such big capacitor is in use. 
 
 The tracker as designed will  be powered  from USB 5V Powerbank - it is good to use the cheapest USB powerbanks that do not have current sensor. Remember that GPS tracker will draw LOW current ( lower than 14mA). Some advanced powerbanks tend to switch off USB 5V when they find out that there is very little current consumed. If you have Powerbank with signalling LED then I suggest to get rid of this LED to reduce power drain on Powerbank.
-By adding LM1804/LM317/LM7805 circuit you or DC-DC buck converter (LM2596) you may adopt design to power from +12V car battery.
+By adding LM1804/LM317/LM7805 circuit or DC-DC buck converter (LM2596) you may adopt design to power from +12V car battery.
 
 You can see how it works here : https://www.youtube.com/watch?v=8R99t0O52GI  ( it was the prototype , now the code works much better :-)  
 
