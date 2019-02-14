@@ -97,7 +97,6 @@ Some people do not like to use universal PCB and are having problems with solder
 There are two options for this board - 5V voltage and 3.3V voltage. Pay attention to it when selecting the board so it will  match SIM808 board TTL logic (3.3V - BK-808 or 5V like on other boards). 
 
 To use "Arduino Pro Mini" you will have to connect USBASP programmer from KANDA socket (look here : https://www.atnel.pl/download/blog/ISP_KANDA.jpg )  to appropriate pins of this board  : SCK (pin 13), MISO (pin 12), MOSI (pin 11), RESET (pin RST), pin VCC, pin GND - like here when changing/uploading bootloader https://www.arduino.cc/en/Hacking/MiniBootloader
-
 Description of this board is here : https://www.theengineeringprojects.com/2018/06/introduction-to-arduino-pro-mini.html 
 
 This GPS tracker solution is not based on ARDUINO FRAMEWORK (it does not use ARDUINO bootloader), it uses pure C code instead so USBASP programmer is still needed. 
