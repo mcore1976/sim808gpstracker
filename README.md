@@ -37,7 +37,7 @@ CONNECTIONS TO BE MADE :
 2) SIM808 board TXD (BK-SIM808 pin T) to ATMEGA328 RXD PIN #2
 3) SIM808 board DTR (BK-SIM808 pin S : SLEEP PIN) to ATMEGA328 PC5 PIN #28
 4) SIM808 board GND (BK-SIM808 pin G ) : to powerbank GND 
-5) SIM808 board VCC (BK-SIM808 pin V)  : to powerbank +5V VCC
+5) SIM808 board VCC (BK-SIM808 pin V / PWRIN )  : to powerbank +5V VCC
 6) SIM808 board PWRKEY (BK-SIM808 pin K - left unused - it is internally bound to GND, however when breaking this connection it can be used to switch on/off whole SIM808 board)
 OPTIONAL) SIM808 RI/RING if available (No such pin on BK-SIM808 board) - to  ATMEGA328P INT0 pin #4,  and then you may experiment with ATMEGA POWERDOWN mode by uncommenting appropriate portion of the source code 
 
@@ -65,20 +65,20 @@ There are two source files provided, first for BK-808 board (with PIN DTR/SLEEP 
     Example of board wihout SLEEP/DTR is this module SKU405361-SIM808 http://files.banggood.com/2016/06/SKU405361-SIM808.rar . These boards are also sold here : https://www.electrodragon.com/product/sim808-dev-board-gsmgprsgps-replacing-sim908/
 
 Also pay attention to type of TTL logic the board uses. They have to match on both sides - ATMEGA328P and SIM808 board - otherwise you may kill the SIM808 board. 
-If you want to use board that has 5V TTL logic DO NOT put 1N4007 Diodes to ATMEGA328P. If you want to use 3.3V TTL logic on SKU405361-SIM808 (old type), you will probably need to connect 3.3V from ATMEGA VCC (after 3x 1N4007 Diode drop it from 5V) to VMCU PIN of SIM808 board to switch it to 3.3V mode. You need to check all the details in SIM808 board manual.
+If you want to use board that has 5V TTL logic DO NOT put 1N4007 Diodes to ATMEGA328P. If you want to use 3.3V TTL logic on SKU405361-SIM808 (old type), you will probably need to connect 3.3V from ATMEGA VCC (after 3x 1N4007 Diode drop it from 5V) to VMCU PIN (if available) of SIM808 board to switch it to 3.3V mode. You need to check all the details in SIM808 board manual.
 
 
 To upload program code to the chip using cheapest USBASP programmer (less than 2 USD on eBay/Aliexpress) 
 look at this page : http://www.learningaboutelectronics.com/Articles/Program-AVR-chip-using-a-USBASP-with-10-pin-cable.php
 
-The script attached in repository ( "compileatmega" or "compileaatmega2") can be used to upload data to the chip if you have Linux machine with following packages : "gcc-avr", "binutils-avr", "avr-libc", "avrdude" and optionally "gdb-avr"(debugger only if you really need it) . 
+The script attached in repository ( "compileatmega" or "compileaatmega2") can be used to upload data to the chip if you have Linux machine with following packages : "gcc-avr", "binutils-avr" (or sometimes just "binutils"), "avr-libc", "avrdude" and optionally "gdb-avr"(debugger only if you really need it) . 
 For example in Ubuntu download these packages using command : "sudo apt-get install gcc-avr binutils-avr avr-libc gdb-avr avrdude". 
 After doing it you will be able to run compilation the script from the directory you have downloaded github files by commands: 
 - "sudo chmod +rx compiletmega*" and "sudo ./compileatmega"  ( for BK-808 board)
 - "sudo chmod +rx compiletmega*" and "sudo ./compileatmega2" ( for other SIM808 boards )
 
 
-In the code you have to put correct APN, USERNAME and PASSWORD of GPRS access from your Mobile Network Operator before compiling - replace word "internet" with correct words for your MNO :
+In the code you have to put correct APN, USERNAME and PASSWORD of GPRS access from your Mobile Network Operator before compiling - replace word "internet" with correct words for your MNO (check your with your mobile operator how to configure GPRS access) :
 
 constchar SAPBR2[] PROGMEM = {"AT+SAPBR=3,1,\"APN\",\"internet\"\r\n"}; // Put your mobile operator APN name here
 
@@ -86,18 +86,18 @@ constchar SAPBR3[] PROGMEM = {"AT+SAPBR=3,1,\"USER\",\"internet\"\r\n"}; // Put 
 
 constchar SAPBR4[] PROGMEM = {"AT+SAPBR=3,1,\"PWD\",\"internet\"\r\n"}; // Put your mobile operator APN password here
 
-If you are having problems with compilation and USBASR programmer you may also look at these tutorials  :  http://www.linuxandubuntu.com/home/setting-up-avr-gcc-toolchain-and-avrdude-to-program-an-avr-development-board-in-ubuntu 
+If you are having problems with C code compilation or USBASR programmer you may also look at these tutorials  :  http://www.linuxandubuntu.com/home/setting-up-avr-gcc-toolchain-and-avrdude-to-program-an-avr-development-board-in-ubuntu 
 
 https://blog.podkalicki.com/how-to-compile-and-burn-the-code-to-avr-chip-on-linuxmacosxwindows/  
 
 
-Some people do not like to use universal PCB and are having problems with soldering. You may use "Arduino Pro Mini" instead.
-There are two options for this board - 5V voltage and 3.3V voltage. Pay attention to it when selecting the board so it will  match SIM808 board TTL logic (3.3V - BK-808 or 5V like on other boards). 
+Some people do not like to use universal PCB and are having problems with soldering. You may use "Arduino Pro Mini" (or clone) instead.
+There are two types of this board - 5V voltage and 3.3V voltage. Pay attention to it when selecting the board so it will  match SIM808 board TTL logic (3.3V - BK-808 or 5V like on other boards). 
 
-To use "Arduino Pro Mini" you will have to connect USBASP programmer from KANDA socket (look here : https://www.atnel.pl/download/blog/ISP_KANDA.jpg )  to appropriate pins of this board  : SCK (pin 13), MISO (pin 12), MOSI (pin 11), RESET (pin RST), pin VCC, pin GND - like here when changing/uploading bootloader https://www.arduino.cc/en/Hacking/MiniBootloader
+Even when using "Arduino Pro Mini" you will have to connect USBASP programmer from KANDA socket (look here : https://www.atnel.pl/download/blog/ISP_KANDA.jpg )  to appropriate pins of this board  : SCK (pin 13), MISO (pin 12), MOSI (pin 11), RESET (pin RST), pin VCC, pin GND - like here when changing/uploading bootloader https://www.arduino.cc/en/Hacking/MiniBootloader
 Description of this board is here : https://www.theengineeringprojects.com/2018/06/introduction-to-arduino-pro-mini.html 
 
-This GPS tracker solution is not based on ARDUINO FRAMEWORK (it does not use ARDUINO bootloader), it uses pure C code instead so USBASP programmer is still needed. 
+This GPS tracker solution is not based on ARDUINO FRAMEWORK (it does not use ARDUINO bootloader and we are getting rid of it here), it uses pure C code instead so USBASP programmer is still needed. 
 
 
 
