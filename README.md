@@ -11,18 +11,18 @@ a) SIM808 based board BK-SIM808 (10-12 USD on Aliexpress )
    https://cdn.instructables.com/ORIG/FAO/80RU/IXLALERK/FAO80RUIXLALERK.pdf)
    it may also work with boards SKU405361-SIM808 (see description below for source code options)
    
-b) GPS (passive) antenna with IPEX connector matching BK-SIM808 board - 2 USD
+b) GPS (passive) antenna with IPEX / U.FL connector matching BK-SIM808 board - 2 USD
 
-c) GSM antenna with IPEX connector matching BK-SIM808 board - 1 USD
+c) GSM antenna with IPEX / U.FL connector matching BK-SIM808 board - 1 USD
 
 d) ATMEGA 328P (arduino uno) - 2 USD or ATMEGA328P based board : https://www.theengineeringprojects.com/2018/06/introduction-to-arduino-pro-mini.html  
 
 e) 3x 1N4007 (1 USD) - to convert 5V from powerbank to 3.3V for ATMEGA328P VCC ( only for BK-808 board and others that require TTL 3.3V logic)
 
 f) 2x 1000uF / 16V capacitor ( 0.5 USD) - connect to VCC & GND of SIM808 board 
-   AND to existing 100uF (parallel) on the SIM808 board
+   AND to existing 100uF (parallel) on the SIM808 board - usage of this capacitor depends on type of SIM808 board
 
-g) 100nF / 12V (or higher)  capacitor (0.2 USD) - connect to VCC & GND of SIM808 board
+g) 100nF / 12V (or higher)  capacitor (0.2 USD) - connect to VCC & GND of ATMEGA328P ( if not using "Arduino Pro Mini" board)
 
 h) universal PCB, pins & connector (2 USD) or some wires with pins if you going to use boards like "Arduino Pro Mini" instead 
 
@@ -33,18 +33,17 @@ i) USB Powerbank 5V to make it work...
 
 CONNECTIONS TO BE MADE :
 
-1) SIM808 RXD (BK-SIM808 pin R) to ATMEGA328 TXD PIN #3,
-2) SIM808 TXD (BK-SIM808 pin T) to ATMEGA328 RXD PIN #2
-3) SIM808 DTR (BK-SIM808 pin S : SLEEP PIN) to ATMEGA328 PC5 PIN #28
-4) SIM808 GND (BK-SIM808 pin G ) : to powerbank GND 
-5) SIM808 VCC (BK-SIM808 pin V)  : to powerbank +5V VCC
-6) SIM808 PWRKEY (BK-SIM808 pin K - left unused - it is internally bound to GND, however when breaking this connection it can be used to switch on/off whole SIM808 board)
-
-OPTIONAL) if SIM808 RI/RING available - connect to ATMEGA328P INT0 pin #4 and uncomment appropriate portion of the source code to enable POWERDOWN mode on ATMEGA
+1) SIM808 board RXD (BK-SIM808 pin R) to ATMEGA328 TXD PIN #3,
+2) SIM808 board TXD (BK-SIM808 pin T) to ATMEGA328 RXD PIN #2
+3) SIM808 board DTR (BK-SIM808 pin S : SLEEP PIN) to ATMEGA328 PC5 PIN #28
+4) SIM808 board GND (BK-SIM808 pin G ) : to powerbank GND 
+5) SIM808 board VCC (BK-SIM808 pin V)  : to powerbank +5V VCC
+6) SIM808 board PWRKEY (BK-SIM808 pin K - left unused - it is internally bound to GND, however when breaking this connection it can be used to switch on/off whole SIM808 board)
+OPTIONAL) SIM808 RI/RING if available (No such pin on BK-SIM808 board) - to  ATMEGA328P INT0 pin #4,  and then you may experiment with ATMEGA POWERDOWN mode by uncommenting appropriate portion of the source code 
 
 7) Capacitor 1000uF between +5V and GND of powerbank  (optional, most of them already has some huge capacitors)
 
-8) put 3x 1N40007 diodes IN SERIAL between 5V VCC and ATMEGA328P VCC PIN #7 - ATMEGA must be powered from ~3.3V to adopt TTL logic of outputs TXD/RXD of SIM808 (BK-SIM808) board
+8) put 3x 1N40007 diodes IN SERIAL between 5V VCC and ATMEGA328P VCC PIN #7 (only for BK808 board and others that use 3.3V TTL logic) - ATMEGA must be powered from ~3.3V to adopt TTL logic of outputs TXD/RXD of SIM808 (BK-SIM808) board
 
 9) put 100nF capacitor between ATMEGA328P VCC pin #7 and ATMEGA328P GND pin #8 & PIN#22
 
