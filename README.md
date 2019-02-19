@@ -39,6 +39,7 @@ CONNECTIONS TO BE MADE :
 4) SIM808 board GND (BK-SIM808 pin G ) : to powerbank GND 
 5) SIM808 board VCC (BK-SIM808 pin V / PWRIN )  : to powerbank +5V VCC
 6) SIM808 board PWRKEY (BK-SIM808 pin K - left unused - it is internally bound to GND, however when breaking this connection it can be used to switch on/off whole SIM808 board)
+
 OPTIONAL) SIM808 RI/RING if available (No such pin on BK-SIM808 board) - to  ATMEGA328P INT0 pin #4,  and then you may experiment with ATMEGA POWERDOWN mode by uncommenting appropriate portion of the source code 
 
 7) Capacitor 1000uF between +5V and GND of powerbank  (optional, most of them already has some huge capacitors)
