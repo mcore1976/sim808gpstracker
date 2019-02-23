@@ -3,6 +3,7 @@ DIY cheap GPS motorbike/car tracker based on  ATMEGA 328P (arduino uno chip) and
 
 The device when called by mobile phone polls info from GPS module ( if can fix to sattelites - tries several minutes to fix) or when not available polls cell-id info from nearest 2G cell and  using GPRS  query Google servers for GPS location of that 2G cell. Collected location information is send back as text message to your phone as Google Map link. I have tried to keep the code as simple as possible and conserve battery power so functionality is rather limited... However...
 The software can be customized to provide location in realtime to some HTTP POST /FTP server (there is short tutorial here https://www.raviyp.com/embedded/194-sim900-gprs-http-at-commands?start=1 ) - it is up to you to expand the code. 
+There is experimental version "main3.c" which sends 5 times GPS location in 4-5 minutes interval upon receiving any text (SMS) messages.
 
 BILL OF MATERIAL LIST (as for year 2019):
 
@@ -60,6 +61,8 @@ There are two source files provided, first for BK-808 board (with PIN DTR/SLEEP 
 
 "main.c"  (+ compilation script "compileatmega") 
     - source file for SIM808 boards WITH DTR/SLEEP PIN exposed as BK-808 board. To use this file you will have to attach ATMEGA PC5 PIN #28 to SIM808 board DTR/SLEEP pin. 
+
+"main3.c" - EXPERIMENTAL VERSION - source file for SIM808 boards WITH DTR/SLEEP PIN exposed as BK-808 board. To use this file you will have to attach ATMEGA PC5 PIN #28 to SIM808 board DTR/SLEEP pin. This version provides CONTINOUS MODE of positioning and sends 5 times GPS location in 4-5 minutes interval upon receiving any text (SMS) messages. Simply send a text message to your simcard in GPS tracker to receive five GPS positions in 20 minutes sequence.
 
 "main2.c"  (+ compilation script "compileatmega2")  
     - source file for SIM808 boards WIHOUT DTR/SLEEP PIN exposed. To use this file you DO NOT connect ATMEGA PC5 pin to DTR SIM808.  
