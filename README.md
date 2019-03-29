@@ -57,7 +57,7 @@ OPTIONAL) SIM808 RI/RING if available (No such pin on BK-SIM808 board) - to  ATM
 
 SOURCE FILE OPTIONS :
 
-There are two source files provided, first for BK-808 board (with PIN DTR/SLEEP and RXD/TXD) and second file for any SIM808 based board with only RXD,TXD pins.
+There are two source files provided, first for BK-808 board (with PIN DTR/SLEEP and RXD/TXD) and second file for any SIM808 based board with only RXD,TXD pins. Additionally there is newest experimental version for BK808 based solution.
 
 "main.c"  (+ compilation script "compileatmega") 
     - source file for SIM808 boards WITH DTR/SLEEP PIN exposed as BK-808 board. To use this file you will have to attach ATMEGA PC5 PIN #28 to SIM808 board DTR/SLEEP pin. 
