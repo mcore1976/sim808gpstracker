@@ -62,11 +62,18 @@ There are two source files provided, first for BK-808 board (with PIN DTR/SLEEP 
 "main.c"  (+ compilation script "compileatmega") 
     - source file for SIM808 boards WITH DTR/SLEEP PIN exposed as BK-808 board. To use this file you will have to attach ATMEGA PC5 PIN #28 to SIM808 board DTR/SLEEP pin. 
 
+
+
 "main3.c" - EXPERIMENTAL VERSION - source file for SIM808 boards WITH DTR/SLEEP PIN exposed as BK-808 board. To use this file you will have to attach ATMEGA PC5 PIN #28 to SIM808 board DTR/SLEEP pin. 
+
 This version (v3) provides SMS control :
+
 Command "TRACK"  gives CONTINOUS MODE of positioning and sends 5 times GPS location in 4-5 minutes interval. Simply send a text message TRACK to your simcard in GPS tracker to receive five GPS positions in 20 minutes sequence.
-Command "SINGLE"  gives single GPS/GSM  positioning response. Simply send a text message SIBGLE to your simcard in GPS tracker to receive single/current GPS position.
+
+Command "SINGLE"  gives single GPS/GSM  positioning response. Simply send a text message SINGLE to your simcard in GPS tracker to receive single/current GPS position.
 Command are responded with "COMMAND ACCEPTED" or "WRONG COMMAND" confirmations...
+
+
 
 "main2.c"  (+ compilation script "compileatmega2")  
     - source file for SIM808 boards WIHOUT DTR/SLEEP PIN exposed. To use this file you DO NOT connect ATMEGA PC5 pin to DTR SIM808.  
