@@ -57,15 +57,14 @@ OPTIONAL) SIM808 RI/RING if available (No such pin on BK-SIM808 board) - to  ATM
 
 SOURCE FILE OPTIONS :
 
-There are two source files provided, first for BK-808 board (with PIN DTR/SLEEP and RXD/TXD) and second file for any SIM808 based board with only RXD,TXD pins. Additionally there is newest experimental version for BK808 based solution.
+There are two types of source files provided, first for BK-808 board (with PIN DTR/SLEEP and RXD/TXD) and second file for any SIM808 based board with only RXD,TXD pins. 
+
+------  for BK808 board or other WITH DTR/SLEEP pin --------
 
 "main.c"  (+ compilation script "compileatmega") 
     - source file for SIM808 boards WITH DTR/SLEEP PIN exposed as BK-808 board. To use this file you will have to attach ATMEGA PC5 PIN #28 to SIM808 board DTR/SLEEP pin. 
 
-
-
-"main3.c" - EXPERIMENTAL VERSION - source file for SIM808 boards WITH DTR/SLEEP PIN exposed as BK-808 board. To use this file you will have to attach ATMEGA PC5 PIN #28 to SIM808 board DTR/SLEEP pin. 
-
+"main3.c" (+ compilation script "compileatmega") - EXPERIMENTAL VERSION - source file for SIM808 boards WITH DTR/SLEEP PIN exposed as BK-808 board. To use this file you will have to attach ATMEGA PC5 PIN #28 to SIM808 board DTR/SLEEP pin. 
 This version (v3) provides SMS control :
 
 Command "TRACK"  gives CONTINOUS MODE of positioning and sends 5 times GPS location in 4-5 minutes interval. Simply send a text message TRACK to your simcard in GPS tracker to receive five GPS positions in 20 minutes sequence.
@@ -73,7 +72,7 @@ Command "TRACK"  gives CONTINOUS MODE of positioning and sends 5 times GPS locat
 Command "SINGLE"  gives single GPS/GSM  positioning response. Simply send a text message SINGLE to your simcard in GPS tracker to receive single/current GPS position.
 Command are responded with "COMMAND ACCEPTED" or "WRONG COMMAND" confirmations...
 
-
+------- for other boards ( that do not have RING or DTR pin exposed ------
 
 "main2.c"  (+ compilation script "compileatmega2")  
     - source file for SIM808 boards WIHOUT DTR/SLEEP PIN exposed. To use this file you DO NOT connect ATMEGA PC5 pin to DTR SIM808.  
@@ -82,6 +81,9 @@ Command are responded with "COMMAND ACCEPTED" or "WRONG COMMAND" confirmations..
 Also pay attention to type of TTL logic the board uses. They have to match on both sides - ATMEGA328P and SIM808 board - otherwise you may kill the SIM808 board. 
 If you want to use board that has 5V TTL logic DO NOT put 1N4007 Diodes to ATMEGA328P. If you want to use 3.3V TTL logic on SKU405361-SIM808 (old type), you will probably need to connect 3.3V from ATMEGA VCC (after 3x 1N4007 Diode drop it from 5V) to VMCU PIN (if available) of SIM808 board to switch it to 3.3V mode. You need to check all the details in SIM808 board manual.
 
+"main4.c" (+ compilation script "compileatmega4")  - EXPERIMENTAL VERSION with SMS commands (as version 3) - source file for other SIM808 boards without DTR and RING pin. To use this source file only RXD, TXD, GND lines have to be connected from SIM808 board to ATMEGA 328P.
+
+-------------
 
 To upload program code to the chip using cheapest USBASP programmer (less than 2 USD on eBay/Aliexpress) 
 look at this page : http://www.learningaboutelectronics.com/Articles/Program-AVR-chip-using-a-USBASP-with-10-pin-cable.php
