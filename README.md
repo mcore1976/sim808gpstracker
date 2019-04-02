@@ -67,9 +67,9 @@ There are two types of source files provided, first for BK-808 board (with PIN D
 "main3.c" (+ compilation script "compileatmega") - EXPERIMENTAL VERSION - source file for SIM808 boards WITH DTR/SLEEP PIN exposed as BK-808 board. To use this file you will have to attach ATMEGA PC5 PIN #28 to SIM808 board DTR/SLEEP pin. 
 This version (v3) provides SMS control :
 
-Command "ACTIVATE" stores the phone number of sender as allowed to MT call the device and get the current GPS/GSM position. Other calls will be ignored (security feature) 
+Command "ACTIVATE" stores the phone number of sender as allowed to MT call the device and get the current GPS/GSM position. Other calls will be ignored (security feature). Simply send a text message ACTIVATE to your simcard in GPS tracker to enable voice call answering with GPS position of the tracker.
 
-Command "MULTI"  gives CONTINOUS MODE of positioning and sends 5 times GPS location in 4-5 minutes interval. Simply send a text message TRACK to your simcard in GPS tracker to receive five GPS positions in 20 minutes sequence.
+Command "MULTI"  gives CONTINOUS MODE of positioning and sends 5 times GPS location in 4-5 minutes interval. Simply send a text message MULTI to your simcard in GPS tracker to receive five GPS positions in 20 minutes sequence.
 
 Command "SINGLE"  gives single GPS/GSM  positioning response. Simply send a text message SINGLE to your simcard in GPS tracker to receive single/current GPS position.
 Command are responded with "COMMAND ACCEPTED" or "WRONG COMMAND" confirmations...
