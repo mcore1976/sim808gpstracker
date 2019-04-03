@@ -1,9 +1,12 @@
 # sim808gpstracker
-DIY cheap GPS motorbike/car tracker based on  ATMEGA 328P (arduino uno chip) and SIM808 module from China (includes GPS and GNSS function). The total cost is below 20USD ( as in 2019 ) and positioning accuracy is ~1-5 meters ( tested in Europe location)
+DIY cheap GPS motorbike/car tracker based on  ATMEGA 328P (arduino uno chip) and SIM808 module from China (includes GPS and GNSS function). The total cost is below 20USD ( as in 2019 ) and positioning accuracy is ~1-20 meters ( tested in Europe location)
 
-The device when called by mobile phone polls info from GPS module ( if can fix to sattelites - tries several minutes to fix) or when not available polls cell-id info from nearest 2G cell and  using GPRS  query Google servers for GPS location of that 2G cell. Collected location information is send back as text message to your phone as Google Map link. I have tried to keep the code as simple as possible and conserve battery power so functionality is rather limited... However...
+The device when called by mobile phone polls info from GPS module ( if can fix to sattelites - tries several minutes to fix) or when not available polls cell-id info from nearest 2G cell and  using GPRS  query Google servers for GPS location of that 2G cell. Collected location information is send back as text message to your phone as Google Map link. 
+I have tried to keep the code as simple as possible and conserve battery power so functionality is rather limited... However...
+
 There is experimental version "main3.c"/"main4.c" which uses set of commands to control behavior of the tracking device using text messages. One of mode (MULTI) sends 5 times GPS location in 4-5 minutes interval upon receiving particular message.
 The software will be further developed to include ALARM function to automatically notify by text message if vehicle has moved to other GPS position.
+
 The software can also be customized to provide location in realtime to some HTTP POST /FTP server (there is short tutorial how to do it here https://www.raviyp.com/embedded/194-sim900-gprs-http-at-commands?start=1 ) - it is up to you to expand the code. 
 
 BILL OF MATERIAL LIST (as for year 2019):
