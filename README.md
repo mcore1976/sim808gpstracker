@@ -2,9 +2,9 @@
 DIY cheap GPS motorbike/car tracker based on  ATMEGA 328P (arduino uno chip) and SIM808 module from China (includes GPS and GNSS function). The total cost is below 20USD ( as in 2019 ) and positioning accuracy is ~1-5 meters ( tested in Europe location)
 
 The device when called by mobile phone polls info from GPS module ( if can fix to sattelites - tries several minutes to fix) or when not available polls cell-id info from nearest 2G cell and  using GPRS  query Google servers for GPS location of that 2G cell. Collected location information is send back as text message to your phone as Google Map link. I have tried to keep the code as simple as possible and conserve battery power so functionality is rather limited... However...
-The software can be customized to provide location in realtime to some HTTP POST /FTP server (there is short tutorial here https://www.raviyp.com/embedded/194-sim900-gprs-http-at-commands?start=1 ) - it is up to you to expand the code. 
-There is experimental version "main3.c" which uses set of commands to control behavior of the tracking device. One of mode (MULTI) sends 5 times GPS location in 4-5 minutes interval upon receiving particular message.
-The software will be further developed to include ALARM function to automatically notify if vehicle moved to other GPS position.
+There is experimental version "main3.c"/"main4.c" which uses set of commands to control behavior of the tracking device using text messages. One of mode (MULTI) sends 5 times GPS location in 4-5 minutes interval upon receiving particular message.
+The software will be further developed to include ALARM function to automatically notify by text message if vehicle has moved to other GPS position.
+The software can also be customized to provide location in realtime to some HTTP POST /FTP server (there is short tutorial how to do it here https://www.raviyp.com/embedded/194-sim900-gprs-http-at-commands?start=1 ) - it is up to you to expand the code. 
 
 BILL OF MATERIAL LIST (as for year 2019):
 
@@ -58,24 +58,30 @@ OPTIONAL) SIM808 RI/RING if available (No such pin on BK-SIM808 board) - to  ATM
 
 SOURCE FILE OPTIONS :
 
-There are two types of source files provided, first for BK-808 board (with PIN DTR/SLEEP and RXD/TXD) and second file for any SIM808 based board with only RXD,TXD pins. 
+You can find several boards with SIM808 on the market. Some of them have full pinout like GND,RXD,TXD,DTR,RING - but others can have only serial port exposed : GND, RXD, TXD. Some boards are using 3.3V TTL logic on serial port, but others use 5V TTL logic.  You have to pay attention to all the details and consult the seller before buying development board.
+
+Below there are two types of source files provided, first for BK-808 board (with PIN DTR/SLEEP and RXD/TXD) and second file for any SIM808 based board with only RXD,TXD pins. 
 
 ------  for BK808 board or other WITH DTR/SLEEP pin --------
 
 "main.c"  (+ compilation script "compileatmega") 
     - source file for SIM808 boards WITH DTR/SLEEP PIN exposed as BK-808 board. To use this file you will have to attach ATMEGA PC5 PIN #28 to SIM808 board DTR/SLEEP pin. 
 
-"main3.c" (+ compilation script "compileatmega") - EXPERIMENTAL VERSION - source file for SIM808 boards WITH DTR/SLEEP PIN exposed as BK-808 board. To use this file you will have to attach ATMEGA PC5 PIN #28 to SIM808 board DTR/SLEEP pin. 
+"main3.c" (+ compilation script "compileatmega3") - EXPERIMENTAL VERSION - source file for SIM808 boards WITH DTR/SLEEP PIN exposed as BK-808 board. To use this file you will have to attach ATMEGA PC5 PIN #28 to SIM808 board DTR/SLEEP pin. 
+
 This version (v3) provides SMS control :
 
-Command "ACTIVATE" stores the phone number of sender as allowed to MT call the device and get the current GPS/GSM position. Other calls will be ignored (security feature). Simply send a text message ACTIVATE to your simcard in GPS tracker to enable voice call answering with GPS position of the tracker.
+- Command "ACTIVATE" stores the phone number of sender as allowed to MT call the device and get the current GPS/GSM position. Other calls will be ignored (security feature). Simply send a text message ACTIVATE to your simcard in GPS tracker to enable voice call answering with GPS position of the tracker.
 
-Command "MULTI"  gives CONTINOUS MODE of positioning and sends 5 times GPS location in 4-5 minutes interval. Simply send a text message MULTI to your simcard in GPS tracker to receive five GPS positions in 20 minutes sequence.
+- Command "MULTI"  gives CONTINOUS MODE of positioning and sends 5 times GPS location in 4-5 minutes interval. Simply send a text message MULTI to your simcard in GPS tracker to receive five GPS positions in 20 minutes sequence.
 
-Command "SINGLE"  gives single GPS/GSM  positioning response. Simply send a text message SINGLE to your simcard in GPS tracker to receive single/current GPS position.
+- Command "SINGLE"  gives single GPS/GSM  positioning response. Simply send a text message SINGLE to your simcard in GPS tracker to receive single/current GPS position.
 Command are responded with "COMMAND ACCEPTED" or "WRONG COMMAND" confirmations...
 
-------- for other boards ( that do not have RING or DTR pin exposed ------
+Other commands like "ALARM" will be implemented soon...
+
+
+------- for other boards ( that do not have neither RING nor DTR pin exposed ) ------
 
 "main2.c"  (+ compilation script "compileatmega2")  
     - source file for SIM808 boards WIHOUT DTR/SLEEP PIN exposed. To use this file you DO NOT connect ATMEGA PC5 pin to DTR SIM808.  
@@ -91,20 +97,20 @@ If you want to use board that has 5V TTL logic DO NOT put 1N4007 Diodes to ATMEG
 To upload program code to the chip using cheapest USBASP programmer (less than 2 USD on eBay/Aliexpress) 
 look at this page : http://www.learningaboutelectronics.com/Articles/Program-AVR-chip-using-a-USBASP-with-10-pin-cable.php
 
-The script attached in repository ( "compileatmega" or "compileaatmega2") can be used to upload data to the chip if you have Linux machine with following packages : "gcc-avr", "binutils-avr" (or sometimes just "binutils"), "avr-libc", "avrdude" and optionally "gdb-avr"(debugger only if you really need it) . 
+The script attached in repository ( "compileatmegaX") can be used to upload data to the chip if you have Linux machine with following packages : "gcc-avr", "binutils-avr" (or sometimes just "binutils"), "avr-libc", "avrdude" and optionally "gdb-avr"(debugger only if you really need it) . 
 For example in Ubuntu download these packages using command : "sudo apt-get install gcc-avr binutils-avr avr-libc gdb-avr avrdude". 
 After doing it you will be able to run compilation the script from the directory you have downloaded github files by commands: 
-- "sudo chmod +rx compiletmega*" and "sudo ./compileatmega"  ( for BK-808 board)
-- "sudo chmod +rx compiletmega*" and "sudo ./compileatmega2" ( for other SIM808 boards )
+- "sudo chmod +rx compiletmega*" and "sudo ./compileatmega" or "sudo ./compileatmega3"  ( for BK-808 board)
+- "sudo chmod +rx compiletmega*" and "sudo ./compileatmega2" or "sudo ./compileatmega4" ( for other SIM808 boards )
 
-
+IMPORTANT !!!
 In the code you have to put correct APN, USERNAME and PASSWORD of GPRS access from your Mobile Network Operator before compiling - replace word "internet" with correct words for your MNO (check your with your mobile operator how to configure GPRS access) :
 
 constchar SAPBR2[] PROGMEM = {"AT+SAPBR=3,1,\"APN\",\"internet\"\r\n"}; // Put your mobile operator APN name here
-
 constchar SAPBR3[] PROGMEM = {"AT+SAPBR=3,1,\"USER\",\"internet\"\r\n"}; // Put your mobile operator APN username here
-
 constchar SAPBR4[] PROGMEM = {"AT+SAPBR=3,1,\"PWD\",\"internet\"\r\n"}; // Put your mobile operator APN password here
+
+... otherwise you won't be able to receive GSM Cell location when vehicle is indoor (garage ?) !!!
 
 If you are having problems with C code compilation or USBASR programmer you may also look at these tutorials  :  http://www.linuxandubuntu.com/home/setting-up-avr-gcc-toolchain-and-avrdude-to-program-an-avr-development-board-in-ubuntu 
 
@@ -117,13 +123,13 @@ There are two types of this board - 5V voltage and 3.3V voltage. Pay attention t
 Even when using "Arduino Pro Mini" you will have to connect USBASP programmer from KANDA socket (look here : https://www.atnel.pl/download/blog/ISP_KANDA.jpg )  to appropriate pins of this board  : SCK (pin 13), MISO (pin 12), MOSI (pin 11), RESET (pin RST), pin VCC, pin GND - like here when changing/uploading bootloader https://www.arduino.cc/en/Hacking/MiniBootloader
 Description of this board is here : https://www.theengineeringprojects.com/2018/06/introduction-to-arduino-pro-mini.html 
 
-This GPS tracker solution is not based on ARDUINO FRAMEWORK (it does not use ARDUINO bootloader and we are getting rid of it here), it uses pure C code instead so USBASP programmer is still needed. 
+This GPS tracker solution is not based on ARDUINO FRAMEWORK (it does not use ARDUINO bootloader and we are getting rid of it here), it uses pure C code instead so USBASP programmer is still needed.  It takes less memory so it can be uploaded even to smaller/older/smaller chips like ATMEGA168  ( you can find cheaper Arduino Pro Mini board with ATMEGA168 for ~1,5USD) 
 
 
 
 OTHER INFO : 
 
-The solution has low power consumption because it is utilizing SLEEP MODE on SIM808 module (only on BK-808 board) and switches on GPS only when needed.
+The solution has low power consumption because it is utilizing SLEEP MODE on SIM808 module (only on BK-808 board) and switches on GPS only when needed. 
 I have found that on the board BK-SIM808 it is better to get rid of PWR LED (cut off)  because it is taking few mA of current thus unnecessary increasing power consumption - keep that in mind. Generally speaking SIM808 board is not so  power efficient as SIM800L because contains GPS/GNSS block.
 
 The ATMEGA328P must be active all the time because my BK-SIM808 board does not have SIM808 RING/RI pin exposed (which can be used to wake up ATMEGA via hardware interrupt). In this design DTR pin of SIM808 module is used to sleepmode manipulation (when  coming out of sleepmode the DTR pin must be held LOW for at least 50msec). 
