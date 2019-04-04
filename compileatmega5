@@ -1,0 +1,9 @@
+rm main5.elf
+rm main5.o
+rm main5.hex
+avr-gcc -mmcu=atmega328p -std=gnu99 -Wall -Os -o main5.elf main5.c -w
+avr-objcopy -j .text -j .data -O ihex main5.elf main5.hex
+avr-size --mcu=atmega328p --format=avr main5.elf
+# fuse = 62 for 1MHz clock = internal 8Meg / division 8
+sudo avrdude -c usbasp -p m328p -U lfuse:w:0x62:m  -U flash:w:"main5.hex":a
+
