@@ -95,6 +95,10 @@ If you want to use board that has 5V TTL logic DO NOT put 1N4007 Diodes to ATMEG
 
 "main4.c" (+ compilation script "compileatmega4")  - EXPERIMENTAL VERSION with SMS commands (as version 3) - source file for other SIM808 boards without DTR and RING pin. To use this source file only RXD, TXD, GND lines have to be connected from SIM808 board to ATMEGA 328P.
 
+"main6.c" (+ compilation script "compileatmega6") - EXPERIMENTAL ALPHA VERSION - source file for SIM808 boards WITH RXD,TXD,GND PINS ONLY.   
+In this version Command "GUARD" has been added to notify caller of GPS position change using text message. To use this function GPS position must be checked before at least once using command "SINGLE" to save previous position in memory.
+
+
 -------------
 
 To upload program code to the chip using cheapest USBASP programmer (less than 2 USD on eBay/Aliexpress) 
