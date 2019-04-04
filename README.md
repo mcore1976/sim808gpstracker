@@ -80,7 +80,8 @@ This version (v3) provides SMS control :
 - Command "SINGLE"  gives single GPS/GSM  positioning response. Simply send a text message SINGLE to your simcard in GPS tracker to receive single/current GPS position.
 Command are responded with "COMMAND ACCEPTED" or "WRONG COMMAND" confirmations...
 
-"main5.c" (+ compilation script "compileatmega5") - EXPERIMENTAL ALPHA VERSION - source file for SIM808 boards WITH DTR/SLEEP PIN exposed as BK-808 board. To use this file you will have to attach ATMEGA PC5 PIN #28 to SIM808 board DTR/SLEEP pin.  Command "GUARD" added to notify of GPS position change using text message. To use this function GPS position must be checked before at least once using command "SINGLE"
+"main5.c" (+ compilation script "compileatmega5") - EXPERIMENTAL ALPHA VERSION - source file for SIM808 boards WITH DTR/SLEEP PIN exposed as BK-808 board. To use this file you will have to attach ATMEGA PC5 PIN #28 to SIM808 board DTR/SLEEP pin.  
+In this version Command "GUARD" has been added to notify caller of GPS position change using text message. To use this function GPS position must be checked before at least once using command "SINGLE" to save previous position in memory.
 
 
 ------- for other boards ( that do not have neither RING nor DTR pin exposed ) ------
