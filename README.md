@@ -5,7 +5,6 @@ The device when called by mobile phone polls info from GPS module ( if can fix t
 I have tried to keep the code as simple as possible and conserve battery power so functionality is rather limited... However...
 
 There is experimental version "main3.c"/"main4.c" which uses set of commands to control behavior of the tracking device using text messages. One of mode (MULTI) sends 5 times GPS location in 4-5 minutes interval upon receiving particular message.
-The software will be further developed to include ALARM function to automatically notify by text message if vehicle has moved to other GPS position.
 
 The software can also be customized to provide location in realtime to some HTTP POST /FTP server (there is short tutorial how to do it here https://www.raviyp.com/embedded/194-sim900-gprs-http-at-commands?start=1 ) - it is up to you to expand the code. 
 
@@ -81,7 +80,7 @@ This version (v3) provides SMS control :
 - Command "SINGLE"  gives single GPS/GSM  positioning response. Simply send a text message SINGLE to your simcard in GPS tracker to receive single/current GPS position.
 Command are responded with "COMMAND ACCEPTED" or "WRONG COMMAND" confirmations...
 
-Other commands like "ALARM" will be implemented soon...
+"main5.c" (+ compilation script "compileatmega5") - EXPERIMENTAL ALPHA VERSION - source file for SIM808 boards WITH DTR/SLEEP PIN exposed as BK-808 board. To use this file you will have to attach ATMEGA PC5 PIN #28 to SIM808 board DTR/SLEEP pin.  Command "GUARD" added to notify of GPS position change using text message. To use this function GPS position must be checked before at least once using command "SINGLE"
 
 
 ------- for other boards ( that do not have neither RING nor DTR pin exposed ) ------
