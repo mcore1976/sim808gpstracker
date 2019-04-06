@@ -4,7 +4,7 @@ DIY cheap GPS motorbike/car tracker based on  ATMEGA 328P (arduino uno chip) and
 The device when called by mobile phone polls info from GPS module ( if can fix to sattelites - tries several minutes to fix) or when not available polls cell-id info from nearest 2G cell and  using GPRS  query Google servers for GPS location of that 2G cell. Collected location information is send back as text message to your phone as Google Map link. 
 I have tried to keep the code as simple as possible and conserve battery power so functionality is rather limited... However...
 
-There is experimental version "main5.c"/"main6.c" which uses set of commands to control behavior of the tracking device using text messages. One of mode (MULTI) sends 5 times GPS location in 4-5 minutes interval upon receiving particular message.
+There is experimental version "main5.c"/"main6.c" which uses set of commands to control behavior of the tracking device using text messages. One of mode (MULTI) sends 5 times GPS location in 4-5 minutes interval upon receiving particular message. There is also GUARD option to alert in case vehicle has been stolen and is on the move...
 
 The software can also be customized to provide location in realtime to some HTTP POST /FTP server (there is short tutorial how to do it here https://www.raviyp.com/embedded/194-sim900-gprs-http-at-commands?start=1 ) - it is up to you to expand the code. 
 
