@@ -102,8 +102,8 @@ look at this page : http://www.learningaboutelectronics.com/Articles/Program-AVR
 The script attached in repository ( "compileatmegaX") can be used to upload data to the chip if you have Linux machine with following packages : "gcc-avr", "binutils-avr" (or sometimes just "binutils"), "avr-libc", "avrdude" and optionally "gdb-avr"(debugger only if you really need it) . 
 For example in Ubuntu download these packages using command : "sudo apt-get install gcc-avr binutils-avr avr-libc gdb-avr avrdude". 
 After doing it you will be able to run compilation the script from the directory you have downloaded github files by commands: 
-- "sudo chmod +rx compiletmega*" and "sudo ./compileatmega" or "sudo ./compileatmega3"  ( for BK-808 board)
-- "sudo chmod +rx compiletmega*" and "sudo ./compileatmega2" or "sudo ./compileatmega4" ( for other SIM808 boards )
+- "sudo chmod +rx compiletmega*" and "sudo ./compileatmega" or "sudo ./compileatmega5"  ( for BK-808 board)
+- "sudo chmod +rx compiletmega*" and "sudo ./compileatmega2" or "sudo ./compileatmega6" ( for other SIM808 boards )
 
 IMPORTANT !!!
 In the code you have to put correct APN, USERNAME and PASSWORD of GPRS access from your Mobile Network Operator before compiling - replace word "internet" with correct words for your MNO (check your with your mobile operator how to configure GPRS access) :
