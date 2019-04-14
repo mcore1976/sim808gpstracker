@@ -6,7 +6,7 @@ I have tried to keep the code as simple as possible and conserve battery power s
 
 There is also experimental version "main7.c"/"main8.c" which uses set of commands to control behavior of the tracking device using text messages. One of modes (MULTI) sends 5 times GPS location in 4-5 minutes interval upon receiving particular message. There is also GUARD option to alert in case vehicle has been stolen and is on the move...
 
-The software can also be customized to provide location in realtime to some HTTP POST /FTP server (there is short tutorial how to do it here https://www.raviyp.com/embedded/194-sim900-gprs-http-at-commands?start=1 ) - it is up to you to expand the code. 
+The software can also be customized to provide location in realtime to some HTTP POST /FTP server (there is short tutorial how to do it here https://www.raviyp.com/embedded/194-sim900-gprs-http-at-commands?start=1 ) - it is up to you to expand the code. Using GPRS to send HTTP / TCP IP requires good power source for SIM808 board otherwise it will restart itself with "UNDERVOLTAGE WARNING"...
 
 BILL OF MATERIAL LIST (as for year 2019):
 
