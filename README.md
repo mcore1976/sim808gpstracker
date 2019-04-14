@@ -73,14 +73,13 @@ Below there are two types of source files provided, first for BK-808 board (with
 
 This version provides SMS control :
 
-Command can be send in lower or upper letters.
+Command can be send in lower or upper letters. If command is correct it will be responded with appropriate text message confirmation.
 
 - Command "ACTIVATE" stores the phone number of sender as allowed to MT call the device and get the current GPS/GSM position. Other calls will be ignored (security feature). Simply send a text message ACTIVATE to your simcard in GPS tracker to enable voice call answering with GPS position of the tracker.
 
 - Command "MULTI"  gives CONTINOUS MODE of positioning and sends 5 times GPS location in 3-4 minutes interval. Simply send a text message MULTI to your simcard in GPS tracker to receive five GPS positions in 20 minutes sequence.
 
 - Command "SINGLE"  gives single GPS/GSM  positioning response. Simply send a text message SINGLE to your simcard in GPS tracker to receive single/current GPS position.
-Command are responded with "COMMAND ACCEPTED" or "WRONG COMMAND" confirmations...
 
 - Command "GUARD" has been added to notify caller of GPS position change using text message (300 meter sensivity is hardcoded but can be changed in the program). To use this function GPS position must be checked before at least once using command "SINGLE" to save previous position in memory. "GUARD MODE" can be stopped by sending "STOP" message at least once.
 
