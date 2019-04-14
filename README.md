@@ -4,7 +4,7 @@ DIY cheap GPS motorbike/car tracker based on  ATMEGA 328P (arduino uno chip) and
 The device when called by mobile phone polls info from GPS module ( if can fix to sattelites - tries several minutes to fix) or when not available polls cell-id info from nearest 2G cell and  using GPRS  query Google servers for GPS location of that 2G cell. Collected location information is send back as text message to your phone as Google Map link. 
 I have tried to keep the code as simple as possible and conserve battery power so functionality is rather limited... However...
 
-There is experimental version "main5.c"/"main6.c" which uses set of commands to control behavior of the tracking device using text messages. One of mode (MULTI) sends 5 times GPS location in 4-5 minutes interval upon receiving particular message. There is also GUARD option to alert in case vehicle has been stolen and is on the move...
+There is also experimental version "main7.c"/"main8.c" which uses set of commands to control behavior of the tracking device using text messages. One of modes (MULTI) sends 5 times GPS location in 4-5 minutes interval upon receiving particular message. There is also GUARD option to alert in case vehicle has been stolen and is on the move...
 
 The software can also be customized to provide location in realtime to some HTTP POST /FTP server (there is short tutorial how to do it here https://www.raviyp.com/embedded/194-sim900-gprs-http-at-commands?start=1 ) - it is up to you to expand the code. 
 
@@ -69,18 +69,21 @@ Below there are two types of source files provided, first for BK-808 board (with
 "main.c"  (+ compilation script "compileatmega") 
     - source file for SIM808 boards WITH DTR/SLEEP PIN exposed as BK-808 board. To use this file you will have to attach ATMEGA PC5 PIN #28 to SIM808 board DTR/SLEEP pin. 
 
-"main5.c" (+ compilation script "compileatmega5") - EXPERIMENTAL VERSION - source file for SIM808 boards WITH DTR/SLEEP PIN exposed as BK-808 board. To use this file you will have to attach ATMEGA PC5 PIN #28 to SIM808 board DTR/SLEEP pin. 
+"main7.c" (+ compilation script "compileatmega7") - EXPERIMENTAL VERSION - source file for SIM808 boards WITH DTR/SLEEP PIN exposed as BK-808 board. To use this file you will have to attach ATMEGA PC5 PIN #28 to SIM808 board DTR/SLEEP pin. 
 
 This version provides SMS control :
 
+Command can be send in lower or upper letters.
+
 - Command "ACTIVATE" stores the phone number of sender as allowed to MT call the device and get the current GPS/GSM position. Other calls will be ignored (security feature). Simply send a text message ACTIVATE to your simcard in GPS tracker to enable voice call answering with GPS position of the tracker.
 
-- Command "MULTI"  gives CONTINOUS MODE of positioning and sends 5 times GPS location in 4-5 minutes interval. Simply send a text message MULTI to your simcard in GPS tracker to receive five GPS positions in 20 minutes sequence.
+- Command "MULTI"  gives CONTINOUS MODE of positioning and sends 5 times GPS location in 3-4 minutes interval. Simply send a text message MULTI to your simcard in GPS tracker to receive five GPS positions in 20 minutes sequence.
 
 - Command "SINGLE"  gives single GPS/GSM  positioning response. Simply send a text message SINGLE to your simcard in GPS tracker to receive single/current GPS position.
 Command are responded with "COMMAND ACCEPTED" or "WRONG COMMAND" confirmations...
 
-- Command "GUARD" has been added to notify caller of GPS position change using text message. To use this function GPS position must be checked before at least once using command "SINGLE" to save previous position in memory.
+- Command "GUARD" has been added to notify caller of GPS position change using text message (300 meter sensivity is hardcoded but can be changed in the program). To use this function GPS position must be checked before at least once using command "SINGLE" to save previous position in memory. "GUARD MODE" can be stopped by sending "STOP" message at least once.
+
 
 
 ------- for other boards ( that do not have neither RING nor DTR pin exposed ) ------
@@ -92,7 +95,7 @@ Command are responded with "COMMAND ACCEPTED" or "WRONG COMMAND" confirmations..
 Also pay attention to type of TTL logic the board uses. They have to match on both sides - ATMEGA328P and SIM808 board - otherwise you may kill the SIM808 board. 
 If you want to use board that has 5V TTL logic DO NOT put 1N4007 Diodes to ATMEGA328P. If you want to use 3.3V TTL logic on SKU405361-SIM808 (old type), you will probably need to connect 3.3V from ATMEGA VCC (after 3x 1N4007 Diode drop it from 5V) to VMCU PIN (if available) of SIM808 board to switch it to 3.3V mode. You need to check all the details in SIM808 board manual.
 
-"main6.c" (+ compilation script "compileatmega6")  - EXPERIMENTAL VERSION with SMS commands (as version 5) - source file for other SIM808 boards without DTR and RING pin. To use this source file only RXD, TXD, GND lines have to be connected from SIM808 board to ATMEGA 328P.
+"main8.c" (+ compilation script "compileatmega8")  - EXPERIMENTAL VERSION with SMS commands (as version 7) - source file for other SIM808 boards without DTR and RING pin. To use this source file only RXD, TXD, GND lines have to be connected from SIM808 board to ATMEGA 328P.
 
 -------------
 
