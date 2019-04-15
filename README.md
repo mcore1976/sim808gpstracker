@@ -75,7 +75,7 @@ This version provides SMS control :
 
 Command can be send in lower or upper letters. If command is correct it will be responded with appropriate text message confirmation.
 
-- Command "ACTIVATE" stores the phone number of sender as allowed to MT call the device and get the current GPS/GSM position. Other calls will be ignored (security feature). Simply send a text message ACTIVATE to your simcard in GPS tracker to enable voice call answering with GPS position of the tracker.
+- Command "ACTIVATE" stores the phone number of sender as allowed to MT call the device and get the current GPS/GSM position. Other calls will be ignored (security feature). Simply send a text message ACTIVATE to your simcard in GPS tracker to enable voice call answering with GPS position of the tracker to your phone number. This phone number will be stored in non volatile EPROM memory of ATMEGA328P chip so you need to send this command only once.
 
 - Command "MULTI"  gives CONTINOUS MODE of positioning and sends 5 times GPS location in 3-4 minutes interval. Simply send a text message MULTI to your simcard in GPS tracker to receive five GPS positions in 20 minutes sequence.
 
