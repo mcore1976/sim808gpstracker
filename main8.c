@@ -1887,7 +1887,7 @@ int main(void) {
                          if (longdiff < 0)  longdiff = 0 - longdiff;
 
                     // if difference greater than 3 hundread of meters... this value can be modified for SENSIVITY
-                    if ( ( longdiff > 300 )  ||  ( latdiff > 300 ) ) 
+                    if ( ( longdiff > 250 )  ||  ( latdiff > 250 ) ) 
                           // if GPS movement detected send ALERT
                         {
                           // send a SMS in plain text format
