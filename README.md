@@ -98,6 +98,20 @@ If you want to use board that has 5V TTL logic DO NOT put 1N4007 Diodes to ATMEG
 
 -------------
 
+IMPORTANT !!!
+In the code you have to put correct APN, USERNAME and PASSWORD of GPRS access from your Mobile Network Operator before compiling - replace word "internet" with correct words for your MNO (check your with your mobile operator how to configure GPRS access) :
+
+constchar SAPBR2[] PROGMEM = {"AT+SAPBR=3,1,\"APN\",\"internet\"\r\n"}; // Put your mobile operator APN name here
+constchar SAPBR3[] PROGMEM = {"AT+SAPBR=3,1,\"USER\",\"internet\"\r\n"}; // Put your mobile operator APN username here
+constchar SAPBR4[] PROGMEM = {"AT+SAPBR=3,1,\"PWD\",\"internet\"\r\n"}; // Put your mobile operator APN password here
+
+... otherwise you won't be able to receive GSM Cell location when vehicle is indoor (garage ?) !!!
+
+
+--------------------------------------------------------------------------------------------------------------------------
+
+COMPILATION ON LINUX PC :
+
 To upload program code to the chip using cheapest USBASP programmer (less than 2 USD on eBay/Aliexpress) 
 look at this page : http://www.learningaboutelectronics.com/Articles/Program-AVR-chip-using-a-USBASP-with-10-pin-cable.php
 
@@ -107,17 +121,12 @@ After doing it you will be able to run compilation the script from the directory
 - "sudo chmod +rx compiletmega*" and "sudo ./compileatmega7"  ( for BK-808 board)
 - "sudo chmod +rx compiletmega*" and "sudo ./compileatmega8" ( for other SIM808 boards )
 
+COMPILATION ON WINDOWS 10 PC :
+
 If you have Windows 10 machine - follow this tutorial to download and install full AVR-GCC environment : http://fab.cba.mit.edu/classes/863.16/doc/projects/ftsmin/windows_avr.html
-and use "compileatmegaXX.bat" files for compilaton in the directory where you have downloaded mainX.c files. 
+and use "compileatmegaXX.bat" files for compilaton in the directory where you have downloaded mainX.c files. You have to be logged as Windows Administrator and run "cmd" from search window to do that. Then use commands like "cd XXXXX" to change working directory to get to downloaded source files.
 
-IMPORTANT !!!
-In the code you have to put correct APN, USERNAME and PASSWORD of GPRS access from your Mobile Network Operator before compiling - replace word "internet" with correct words for your MNO (check your with your mobile operator how to configure GPRS access) :
 
-constchar SAPBR2[] PROGMEM = {"AT+SAPBR=3,1,\"APN\",\"internet\"\r\n"}; // Put your mobile operator APN name here
-constchar SAPBR3[] PROGMEM = {"AT+SAPBR=3,1,\"USER\",\"internet\"\r\n"}; // Put your mobile operator APN username here
-constchar SAPBR4[] PROGMEM = {"AT+SAPBR=3,1,\"PWD\",\"internet\"\r\n"}; // Put your mobile operator APN password here
-
-... otherwise you won't be able to receive GSM Cell location when vehicle is indoor (garage ?) !!!
 
 If you are having problems with C code compilation or USBASR programmer you may also look at these tutorials  :  http://www.linuxandubuntu.com/home/setting-up-avr-gcc-toolchain-and-avrdude-to-program-an-avr-development-board-in-ubuntu 
 
@@ -130,7 +139,10 @@ There are two types of this board - 5V voltage and 3.3V voltage. Pay attention t
 Even when using "Arduino Pro Mini" you will have to connect USBASP programmer from KANDA socket (look here : https://www.atnel.pl/download/blog/ISP_KANDA.jpg )  to appropriate pins of this board  : SCK (pin 13), MISO (pin 12), MOSI (pin 11), RESET (pin RST), pin VCC, pin GND - like here when changing/uploading bootloader https://www.arduino.cc/en/Hacking/MiniBootloader
 Description of this board is here : https://www.theengineeringprojects.com/2018/06/introduction-to-arduino-pro-mini.html 
 
-This GPS tracker solution is not based on ARDUINO FRAMEWORK (it does not use ARDUINO bootloader and we are getting rid of it here), it uses pure C code instead so USBASP programmer is still needed.  It takes less memory so it can be uploaded even to smaller/older/smaller chips like ATMEGA168  ( you can find cheaper Arduino Pro Mini board with ATMEGA168 for ~1,5USD) 
+NOTICE :
+
+This GPS tracker solution is not based on ARDUINO FRAMEWORK (it does not use ARDUINO bootloader and we are getting rid of it here), it uses pure C code instead so USBASP programmer is still needed. It also utilizes hardware UART interface pins of ATMEGA that are normally used to program via ARDUINO framework...  So USBASP programer is needed
+The code without ARDUINO framework takes less memory so it can be uploaded even to smaller/older/smaller chips like ATMEGA168  ( you can find cheaper Arduino Pro Mini board with ATMEGA168 for ~1,5USD). 
 
 
 
