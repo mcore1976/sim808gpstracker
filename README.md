@@ -112,6 +112,9 @@ constchar SAPBR4[] PROGMEM = {"AT+SAPBR=3,1,\"PWD\",\"internet\"\r\n"}; // Put y
 
 COMPILATION ON LINUX PC :
 
+Link to video how to program the chip : https://www.youtube.com/watch?v=7klgyNzZ2TI
+
+
 To upload program code to the chip using cheapest USBASP programmer (less than 2 USD on eBay/Aliexpress) 
 look at this page : http://www.learningaboutelectronics.com/Articles/Program-AVR-chip-using-a-USBASP-with-10-pin-cable.php
 
