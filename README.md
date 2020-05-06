@@ -21,7 +21,7 @@ BILL OF MATERIAL LIST (as for year 2019):
 
 4. ATMEGA 328P (arduino uno) - 2 USD or ATMEGA328P based board : https://www.theengineeringprojects.com/2018/06/introduction-to-arduino-pro-mini.html  
 
-5. XTAL 8MHz - quartz crystal with 8 MHz frequency to ensure clock stability of ATMEGA not to desynchronize serial port communication with SIM808 module when temperature changes. Using XTAL is optional (compile scripts configure internal RC clock by default ) but i do RECOMMEND using XTAL due to poor internal clock of ATMEGA.  
+5. XTAL 8MHz - quartz crystal with 8 MHz frequency to ensure clock stability of ATMEGA and keep it synchronized with serial port of SIM808 module even when temperature changes (internal RC oscillator in ATMEGA is very unstable). Using XTAL is optional (compile scripts configure internal RC clock by default ) but i do RECOMMEND using XTAL due to poor internal clock of ATMEGA.  
 
 6. 2 x 22pF capacitor for XTAL 
 
