@@ -10,30 +10,31 @@ The software can also be customized to provide location in realtime to some HTTP
 
 BILL OF MATERIAL LIST (as for year 2019):
 
-a) SIM808 based board BK-SIM808 (10-12 USD on Aliexpress )
+1. SIM808 based board BK-SIM808 (10-12 USD on Aliexpress )
  - search for "www.and-global.com" boards BK-SIM808 or equivalent...
    https://cdn.instructables.com/ORIG/FAO/80RU/IXLALERK/FAO80RUIXLALERK.pdf)
    it may also work with boards SKU405361-SIM808 (see description below for source code options)
    
-b) GPS (passive) antenna with IPEX / U.FL connector matching BK-SIM808 board - 2 USD
+2. GPS (passive) antenna with IPEX / U.FL connector matching BK-SIM808 board - 2 USD
 
-c) GSM antenna with IPEX / U.FL connector matching BK-SIM808 board - 1 USD
+3. GSM antenna with IPEX / U.FL connector matching BK-SIM808 board - 1 USD
 
-d) ATMEGA 328P (arduino uno) - 2 USD or ATMEGA328P based board : https://www.theengineeringprojects.com/2018/06/introduction-to-arduino-pro-mini.html  
+4. ATMEGA 328P (arduino uno) - 2 USD or ATMEGA328P based board : https://www.theengineeringprojects.com/2018/06/introduction-to-arduino-pro-mini.html  
 
-e) 3x 1N4007 (1 USD) - to convert 5V from powerbank to 3.3V for ATMEGA328P VCC ( only for BK-808 board and others that require TTL 3.3V logic)
+5. XTAL 8MHz - quartz crystal with 8 MHz frequency to ensure clock stability of ATMEGA not to desynchronize serial port communication with SIM808 module when temperature changes. Using XTAL is optional (compile scripts configure internal RC clock by default ) but i do RECOMMEND using it do to poor internal clock of ATMEGA.  
 
-f) 2x 1000uF / 16V capacitor ( 0.5 USD) - connect to VCC & GND of SIM808 board 
+6. 2 x 22pF capacitor for XTAL 
+
+7. 3x 1N4007 (1 USD) - to convert 5V from powerbank to 3.3V for ATMEGA328P VCC ( only for BK-808 board and others that require TTL 3.3V logic)
+
+8. 2x 1000uF / 16V capacitor ( 0.5 USD) - connect to VCC & GND of SIM808 board 
    AND to existing 100uF (parallel) on the SIM808 board - usage of this capacitor depends on type of SIM808 board
 
-g) 100nF (or some other in range 100nF-1uF) / 12V (or higher)  capacitor (0.2 USD) - connect to VCC & GND of ATMEGA328P ( if not using "Arduino Pro Mini" board)
+9. 100nF (or some other in range 100nF-1uF) / 12V (or higher)  capacitor (0.2 USD) - connect to VCC & GND of ATMEGA328P ( if not using "Arduino Pro Mini" board)
 
-h) universal PCB, pins & connector (2 USD) or some wires with pins if you going to use boards like "Arduino Pro Mini" instead 
+10. universal PCB, pins & connector (2 USD) or some wires with pins if you going to use boards like "Arduino Pro Mini" instead 
 
-i) USB Powerbank 5V to make it work...
-
-
-
+11. USB Powerbank 5V to make it work...
 
 CONNECTIONS TO BE MADE :
 
@@ -56,7 +57,7 @@ OPTIONAL) SIM808 RI/RING if available (No such pin on BK-SIM808 board) - to  ATM
 
 11) The AND-GLOBAL BK-SIM808 board I have used has TO SMALL electrolytic capacitor (mine had only 100uF). You have to solder/add another big capacitor (I have used 2200uF/10V, but it can be 1000uF/10V ) in parallel to make this board work correctly. Otherwise it will continously restart itself while trying to register to the 2G network.
 
-
+12) Connect crystal 8MHz between pins 9 & 10 of ATMEGA 328p and add blocking capacitors 22pF between crystal pins and GND line.
 
 SOURCE FILE OPTIONS :
 
