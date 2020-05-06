@@ -1,7 +1,7 @@
 # sim808gpstracker
 DIY cheap GPS motorbike/car tracker based on  ATMEGA 328P (arduino uno chip) and SIM808 module from China (includes GPS and GNSS function). The total cost is below 20USD ( as in 2019 ) and positioning accuracy is ~1-20 meters ( tested in Europe location)
 
-The device when called by mobile phone polls info from GPS module ( if can fix to sattelites - tries several minutes to fix) or when not available polls cell-id info from nearest 2G cell and  using GPRS  query Google servers for GPS location of that 2G cell. Collected location information is send back as text message to your phone as Google Map link. 
+The device when called by mobile phone polls info from GPS module (if can fix to sattelites - tries several minutes to fix) or when not available polls cell-id info from nearest 2G cell and  using GPRS  query Google servers for GPS location of that 2G cell. Collected location information is send back as text message to your phone as Google Map link. 
 I have tried to keep the code as simple as possible and conserve battery power so functionality is rather limited... However...
 
 There is also experimental version "main7.c"/"main8.c" which uses set of commands to control behavior of the tracking device using text messages. One of modes (MULTI) sends 5 times GPS location in 4-5 minutes interval upon receiving particular message. There is also GUARD option to alert in case vehicle has been stolen and is on the move...
@@ -21,7 +21,7 @@ BILL OF MATERIAL LIST (as for year 2019):
 
 4. ATMEGA 328P (arduino uno) - 2 USD or ATMEGA328P based board : https://www.theengineeringprojects.com/2018/06/introduction-to-arduino-pro-mini.html  
 
-5. XTAL 8MHz - quartz crystal with 8 MHz frequency to ensure clock stability of ATMEGA not to desynchronize serial port communication with SIM808 module when temperature changes. Using XTAL is optional (compile scripts configure internal RC clock by default ) but i do RECOMMEND using it do to poor internal clock of ATMEGA.  
+5. XTAL 8MHz - quartz crystal with 8 MHz frequency to ensure clock stability of ATMEGA not to desynchronize serial port communication with SIM808 module when temperature changes. Using XTAL is optional (compile scripts configure internal RC clock by default ) but i do RECOMMEND using XTAL due to poor internal clock of ATMEGA.  
 
 6. 2 x 22pF capacitor for XTAL 
 
@@ -57,7 +57,7 @@ OPTIONAL) SIM808 RI/RING if available (No such pin on BK-SIM808 board) - to  ATM
 
 11) The AND-GLOBAL BK-SIM808 board I have used has TO SMALL electrolytic capacitor (mine had only 100uF). You have to solder/add another big capacitor (I have used 2200uF/10V, but it can be 1000uF/10V ) in parallel to make this board work correctly. Otherwise it will continously restart itself while trying to register to the 2G network.
 
-12) Connect crystal 8MHz between pins 9 & 10 of ATMEGA 328p and add blocking capacitors 22pF between crystal pins and GND line.
+12) Connect crystal 8MHz between pins 9 & 10 of ATMEGA 328p and add blocking capacitors 22pF between crystal pins and GND line. If you want to use crystal pleas modify "compileatmegaX" file by putting appropriate l-fuse value to avrdude command.
 
 SOURCE FILE OPTIONS :
 
