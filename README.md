@@ -8,6 +8,8 @@ There is also experimental version "main7.c"/"main8.c" which uses set of command
 
 The software can also be customized to provide location in realtime to some HTTP POST /FTP server (there is short tutorial how to do it here https://www.raviyp.com/embedded/194-sim900-gprs-http-at-commands?start=1 ) - it is up to you to expand the code. Using GPRS to send HTTP / TCP IP requires good power source for SIM808 board otherwise it will restart itself with "UNDERVOLTAGE WARNING"...
 
+------------------------------------------------------------------------------------------------------------------------------
+
 BILL OF MATERIAL LIST (as for year 2019):
 
 1. SIM808 based board BK-SIM808 (10-12 USD on Aliexpress )
@@ -36,6 +38,9 @@ BILL OF MATERIAL LIST (as for year 2019):
 
 11. USB Powerbank 5V to make it work...
 
+
+------------------------------------------------------------------------------------------------------------------------------
+
 CONNECTIONS TO BE MADE :
 
 1) SIM808 board RXD (BK-SIM808 pin R) to ATMEGA328 TXD PIN #3,
@@ -58,6 +63,9 @@ OPTIONAL) SIM808 RI/RING if available (No such pin on BK-SIM808 board) - to  ATM
 11) The AND-GLOBAL BK-SIM808 board I have used has TO SMALL electrolytic capacitor (mine had only 100uF). You have to solder/add another big capacitor (I have used 2200uF/10V, but it can be 1000uF/10V ) in parallel to make this board work correctly. Otherwise it will continously restart itself while trying to register to the 2G network.
 
 12) Connect crystal 8MHz between pins 9 & 10 of ATMEGA 328p and add blocking capacitors 22pF between crystal pins and GND line. If you want to use crystal pleas modify "compileatmegaX" file by putting appropriate l-fuse value to avrdude command.
+
+
+----------------------------------------------------------------------------------------------------------------------------
 
 SOURCE FILE OPTIONS :
 
@@ -97,7 +105,8 @@ If you want to use board that has 5V TTL logic DO NOT put 1N4007 Diodes to ATMEG
 
 "main8.c" (+ compilation script "compileatmega8" Linux / "compileatmega8.bat" Windows)  - EXPERIMENTAL VERSION with SMS commands (as version 7) - source file for other SIM808 boards without DTR and RING pin. To use this source file only RXD, TXD, GND lines have to be connected from SIM808 board to ATMEGA 328P.
 
--------------
+-------------------------------------------------------------------------------------------------------------------------
+
 
 IMPORTANT !!!
 In the code you have to put correct APN, USERNAME and PASSWORD of GPRS access from your Mobile Network Operator before compiling - replace word "internet" with correct words for your MNO (check your with your mobile operator how to configure GPRS access) :
@@ -125,6 +134,8 @@ After doing it you will be able to run compilation the script from the directory
 - "sudo chmod +rx compiletmega*" and "sudo ./compileatmega7"  ( for BK-808 board)
 - "sudo chmod +rx compiletmega*" and "sudo ./compileatmega8" ( for other SIM808 boards )
 
+--------------------------------------------------------------------------------------------------------------------------
+
 COMPILATION ON WINDOWS 10 PC :
 
 If you have Windows 10 machine - follow this tutorial to download and install full AVR-GCC environment : http://fab.cba.mit.edu/classes/863.16/doc/projects/ftsmin/windows_avr.html
@@ -143,12 +154,15 @@ There are two types of this board - 5V voltage and 3.3V voltage. Pay attention t
 Even when using "Arduino Pro Mini" you will have to connect USBASP programmer from KANDA socket (look here : https://www.atnel.pl/download/blog/ISP_KANDA.jpg )  to appropriate pins of this board  : SCK (pin 13), MISO (pin 12), MOSI (pin 11), RESET (pin RST), pin VCC, pin GND - like here when changing/uploading bootloader https://www.arduino.cc/en/Hacking/MiniBootloader
 Description of this board is here : https://www.theengineeringprojects.com/2018/06/introduction-to-arduino-pro-mini.html 
 
+---------------------------------------------------------------------------------------------------------------------------
+
 NOTICE :
 
 This GPS tracker solution is not based on ARDUINO FRAMEWORK (it does not use ARDUINO bootloader and we are getting rid of it here), it uses pure C code instead so USBASP programmer is still needed. It also utilizes hardware UART interface pins of ATMEGA that are normally used to program via ARDUINO framework...  So USBASP programer is needed
 The code without ARDUINO framework takes less memory so it can be uploaded even to smaller/older/smaller chips like ATMEGA168  ( you can find cheaper Arduino Pro Mini board with ATMEGA168 for ~1,5USD). 
 
 
+---------------------------------------------------------------------------------------------------------------------------
 
 OTHER INFO : 
 
