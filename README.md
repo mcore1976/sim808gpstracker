@@ -24,9 +24,9 @@ BILL OF MATERIAL LIST (as for year 2019):
 
 4. ATMEGA 328P (arduino uno) - 2 USD or ATMEGA328P based board : https://www.theengineeringprojects.com/2018/06/introduction-to-arduino-pro-mini.html  
 
-5. XTAL 8MHz - quartz crystal with 8 MHz frequency to ensure clock stability of ATMEGA and keep it synchronized with serial port of SIM808 module even when temperature changes (internal RC oscillator in ATMEGA is very unstable). Using XTAL is optional (compile scripts configure internal RC clock by default ) but i do RECOMMEND using XTAL due to poor internal clock of ATMEGA.  
+5. XTAL 8MHz - quartz crystal with 8 MHz frequency to ensure clock stability of ATMEGA and keep it synchronized with serial port of SIM808 module even when temperature changes (internal RC oscillator in ATMEGA is very unstable). Using XTAL is optional (compile scripts configure internal RC clock by default ) but i do RECOMMEND using XTAL due to poor internal clock of ATMEGA.  This one costs 0.2USD
 
-6. 2 x 22pF capacitor for XTAL 
+6. 2 x 22pF capacitor for XTAL - 0.2 USD
 
 7. 3x 1N4007 (1 USD) - to convert 5V from powerbank to 3.3V for ATMEGA328P VCC ( only for BK-808 board and others that require TTL 3.3V logic)
 
@@ -51,7 +51,7 @@ CONNECTIONS TO BE MADE :
 5) SIM808 board VCC (BK-SIM808 pin V / PWRIN )  : to powerbank +5V VCC
 6) SIM808 board PWRKEY (BK-SIM808 pin K - left unused - it is internally bound to GND, however when breaking this connection it can be used to switch on/off whole SIM808 board)
 
-OPTIONAL) SIM808 RI/RING if available (No such pin on BK-SIM808 board) - to  ATMEGA328P INT0 pin #4,  and then you may experiment with ATMEGA POWERDOWN mode by uncommenting appropriate portion of the source code 
+OPTIONAL) SIM808 RI/RING if available (No such pin on BK-SIM808 board) - to  ATMEGA328P INT0 pin #4,  and then you may experiment with ATMEGA POWERDOWN mode by uncommenting appropriate portion of the source code. I didn't have such board so I couldn't check this option.
 
 7) Capacitor 1000uF between +5V and GND of powerbank  (optional, most of them already has some huge capacitors)
 
@@ -81,7 +81,7 @@ Below there are two types of source files provided, first for BK-808 board (with
 
 "main7.c" (+ compilation script "compileatmega7" Linux/"compileatmega7.bat" Windows) - EXPERIMENTAL VERSION - source file for SIM808 boards WITH DTR/SLEEP PIN exposed as BK-808 board. To use this file you will have to attach ATMEGA PC5 PIN #28 to SIM808 board DTR/SLEEP pin. 
 
-This version provides SMS control :
+This version provides SMS (mobile texting)  control of tracker behavior :
 
 Command can be send in lower or upper letters. If command is correct it will be responded with appropriate text message confirmation.
 
