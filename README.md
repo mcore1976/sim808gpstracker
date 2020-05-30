@@ -145,18 +145,15 @@ COMPILATION ON WINDOWS 10 PC :
 If you have Windows 10 machine - follow this tutorial to download and install full AVR-GCC environment : http://fab.cba.mit.edu/classes/863.16/doc/projects/ftsmin/windows_avr.html
 and use "compileatmegaXX.bat" files for compilaton in the directory where you have downloaded mainX.c files. You have to be logged as Windows Administrator and run "cmd" from search window to do that. Then use commands like "cd XXXXX" to change working directory to get to downloaded source files.
 
-
-
-If you are having problems with C code compilation or USBASR programmer you may also look at these tutorials  :  http://www.linuxandubuntu.com/home/setting-up-avr-gcc-toolchain-and-avrdude-to-program-an-avr-development-board-in-ubuntu 
-
-https://blog.podkalicki.com/how-to-compile-and-burn-the-code-to-avr-chip-on-linuxmacosxwindows/  
-
+---------------------------------------------------------------------------------------------------------------------------
 
 Some people do not like to use universal PCB and are having problems with soldering. You may use "Arduino Pro Mini" (or clone) instead.
-There are two types of this board - 5V voltage and 3.3V voltage. Pay attention to it when selecting the board so it will  match SIM808 board TTL logic (3.3V - BK-808 or 5V like on other boards). 
+There are two types of this board - 5V voltage and 3.3V voltage. Pay attention to it when selecting the board so it will  match SIM808 board TTL logic (3.3V - BK-808 or 5V like on other boards).  In such case you will not need parts like XTAL and capacitors for ATMEGA, since they are already in place on such ARDUINO board.
 
-Even when using "Arduino Pro Mini" you will have to connect USBASP programmer from KANDA socket (look here : https://www.atnel.pl/download/blog/ISP_KANDA.jpg )  to appropriate pins of this board  : SCK (pin 13), MISO (pin 12), MOSI (pin 11), RESET (pin RST), pin VCC, pin GND - like here when changing/uploading bootloader https://www.arduino.cc/en/Hacking/MiniBootloader
+Even when using "Arduino Pro Mini" you will still have to connect USBASP programmer with KANDA socket (look here : https://www.atnel.pl/download/blog/ISP_KANDA.jpg )  to appropriate pins of this board  : SCK (pin 13), MISO (pin 12), MOSI (pin 11), RESET (pin RST), pin VCC, pin GND and reprogram ATMEGA chip - like here when changing/uploading bootloader https://www.arduino.cc/en/Hacking/MiniBootloader
 Description of this board is here : https://www.theengineeringprojects.com/2018/06/introduction-to-arduino-pro-mini.html 
+
+Link to video how to program the chip : https://www.youtube.com/watch?v=7klgyNzZ2TI
 
 ---------------------------------------------------------------------------------------------------------------------------
 
