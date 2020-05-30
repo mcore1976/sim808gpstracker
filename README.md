@@ -112,11 +112,14 @@ If you want to use board that has 5V TTL logic DO NOT put 1N4007 Diodes to ATMEG
 IMPORTANT !!!
 In the code you have to put correct APN, USERNAME and PASSWORD of GPRS access from your Mobile Network Operator before compiling - replace word "internet" with correct words for your MNO (check your with your mobile operator how to configure GPRS access) :
 
-constchar SAPBR2[] PROGMEM = {"AT+SAPBR=3,1,\"APN\",\"internet\"\r\n"}; // Put your mobile operator APN name here
-constchar SAPBR3[] PROGMEM = {"AT+SAPBR=3,1,\"USER\",\"internet\"\r\n"}; // Put your mobile operator APN username here
-constchar SAPBR4[] PROGMEM = {"AT+SAPBR=3,1,\"PWD\",\"internet\"\r\n"}; // Put your mobile operator APN password here
+constchar SAPBR2[] PROGMEM = {"AT+SAPBR=3,1,\"APN\",\"internet\"\r\n"}; // Put your mobile operator APN name here instead of 'internet'
 
-... otherwise you won't be able to receive GSM Cell location when vehicle is indoor (garage ?) !!!
+constchar SAPBR3[] PROGMEM = {"AT+SAPBR=3,1,\"USER\",\"internet\"\r\n"}; // Put your mobile operator APN username here instead of 'internet'
+
+constchar SAPBR4[] PROGMEM = {"AT+SAPBR=3,1,\"PWD\",\"internet\"\r\n"}; // Put your mobile operator APN password here instead of 'internet'
+
+... otherwise you won't be able to receive GSM Cell location when vehicle is indoor (garage ?) !!!  This is only needed if you want to have indoor position  in case there is no satellite visibility.
+
 
 
 --------------------------------------------------------------------------------------------------------------------------
