@@ -14,7 +14,7 @@ But REMEMBER - Using GPRS to send HTTP / TCP IP requires good power source for S
 BILL OF MATERIAL LIST (as for year 2019):
 
 1. SIM808 based board BK-SIM808 (10-12 USD on Aliexpress )
- - search for "www.and-global.com" boards BK-SIM808 or equivalent...
+ - search for "www.and-global.com" boards BK-SIM808 or equivalent (you may try here http://and-global.en.alibaba.com/ )...
    https://cdn.instructables.com/ORIG/FAO/80RU/IXLALERK/FAO80RUIXLALERK.pdf)
    it may also work with boards SKU405361-SIM808 (see description below for source code options)
    
