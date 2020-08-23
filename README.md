@@ -1,5 +1,5 @@
 # sim808gpstracker
-DIY cheap GPS motorbike/car tracker based on  ATMEGA 328P (arduino uno chip) and SIM808 module from China (includes GPS and GNSS function). The total cost is below 20USD ( as in 2019 ) and positioning accuracy is ~1-20 meters ( tested in Europe location)
+DIY cheap GPS motorbike/car tracker based on  ATMEGA 328P (arduino uno chip) and SIM808 module from China (includes GPS and GNSS function). The total cost is below 20USD ( as in 2019 ) and positioning accuracy is ~1-20 meters ( tested in Europe location). Accoriding to SIM7500 / SIM7600 modules (LTE CAT1 ) specification this source code also may work on these boards (except usage of GPRS connectivity ). 
 
 The device when called by mobile phone polls info from GPS module (if can fix to sattelites - tries several minutes to fix) or when not available polls cell-id info from nearest 2G cell and  using GPRS  query Google servers for GPS location of that 2G cell. Collected location information is send back as text message to your phone as Google Map link. 
 I have tried to keep the code as simple as possible and conserve battery power so functionality is rather limited... However...
